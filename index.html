@@ -3,835 +3,462 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWAM NIG LTD | Buy, Sell & Rent Properties in Nigeria</title>
+    <title>GROWAM NIG LTD | Premium Properties & Real Estate Services</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Flutterwave Inline JS SDK -->
     <script src="https://checkout.flutterwave.com/v3.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                            dark: '#0f172a'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        .hero-3d-bg {
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Top Announcement Bar with SSL Security Badge -->
-    <div class="bg-brand-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-3">
-        <span><i class="fa-solid fa-shield-halved text-brand-400 mr-1"></i> SSL 256-Bit Encrypted Secure Platform</span>
-        <span class="hidden md:inline">|</span>
-        <span class="hidden md:inline"><i class="fa-solid fa-bullhorn text-brand-400 mr-1"></i> GROWAM NIG LTD — Buy, Sell & Rent Properties Nationwide</span>
-    </div>
-
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('landing')">
-                <div class="w-12 h-12 bg-brand-600 rounded-xl flex items-center justify-center text-white text-2xl font-black shadow-md shadow-brand-600/20">
-                    G
-                </div>
-                <div>
-                    <span class="text-xl font-black tracking-tight text-slate-900 block leading-none">GROWAM</span>
-                    <span class="text-xs font-bold tracking-widest text-brand-600 uppercase">NIG LTD PROPERTIES</span>
-                </div>
+    <!-- Top Bar -->
+    <div class="bg-blue-900 text-white text-xs sm:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i> +234 906 924 5040</span>
+                <span><i class="fa-solid fa-envelope text-blue-400 mr-1"></i> Growamnigltd@gmail.com</span>
             </div>
-
-            <!-- Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-semibold text-slate-600 text-sm">
-                <button onclick="switchView('landing')" class="hover:text-brand-600 transition">Home</button>
-                <button onclick="switchView('hub')" class="hover:text-brand-600 transition">Listings Hub</button>
-                <button onclick="openUploadModal()" class="text-brand-600 hover:text-brand-700 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload Property
-                </button>
-            </nav>
-
-            <!-- User Auth & WhatsApp Actions -->
             <div class="flex items-center space-x-3">
-                <div id="authNavArea" class="flex items-center gap-2">
-                    <button onclick="openAuthModal('signin')" class="text-slate-700 hover:text-brand-600 font-bold text-sm px-3 py-2 transition">Sign In</button>
-                    <button onclick="openAuthModal('signup')" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm transition shadow-sm">Sign Up</button>
-                </div>
-                <div id="userProfileArea" class="hidden items-center gap-3">
-                    <span id="navUsernameDisplay" class="text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1.5 rounded-lg"></span>
-                    <button onclick="logoutUser()" class="text-xs text-red-600 hover:underline font-bold">Sign Out</button>
+                <span class="bg-blue-800 px-2 py-0.5 rounded text-xs font-semibold">RC Number: 1234567</span>
+                <div class="flex space-x-2">
+                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchView('home')">
+                    <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-lg">
+                        <i class="fa-solid fa-building-shield text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-extrabold tracking-wider text-blue-900 uppercase block leading-none">GROWAM <span class="text-blue-600">NIG LTD</span></span>
+                        <span class="text-[10px] tracking-widest text-gray-500 font-semibold uppercase">Properties & Investment</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <button onclick="switchView('home')" class="text-blue-600 hover:text-blue-700 transition">Home</button>
+                    <button onclick="switchView('hub')" class="text-gray-600 hover:text-blue-600 transition">Properties Hub</button>
+                    <button onclick="openModal('uploadModal')" class="text-green-600 hover:text-green-700 font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Upload Property
+                    </button>
+                    <a href="#services" class="text-gray-600 hover:text-blue-600 transition">Services</a>
+                </div>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <button onclick="openModal('loginModal')" class="px-4 py-2 text-blue-600 border border-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition">Login</button>
+                    <button onclick="openModal('signupModal')" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">Get Started</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t px-4 pt-2 pb-4 space-y-3">
+            <button onclick="switchView('home')" class="block text-blue-600 font-medium py-1 text-left w-full">Home</button>
+            <button onclick="switchView('hub')" class="block text-gray-600 font-medium py-1 text-left w-full">Properties Hub</button>
+            <button onclick="openModal('uploadModal')" class="block text-green-600 font-bold py-1 text-left w-full">Upload Property</button>
+            <a href="#services" class="block text-gray-600 font-medium py-1">Services</a>
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t">
+                <button onclick="openModal('loginModal')" class="w-full py-2 text-center text-blue-600 border border-blue-600 rounded-lg font-semibold">Login</button>
+                <button onclick="openModal('signupModal')" class="w-full py-2 text-center bg-blue-600 text-white rounded-lg font-semibold">Get Started</button>
+            </div>
+        </div>
+    </nav>
 
     <!-- MAIN VIEW CONTAINER -->
     <main id="mainContainer">
 
-        <!-- ================= PAGE 1: WELCOME LANDING PAGE ================= -->
-        <section id="landingView" class="relative min-h-[calc(100vh-5rem)] hero-3d-bg flex flex-col justify-between text-white overflow-hidden">
-            <div class="absolute top-1/4 left-10 w-72 h-72 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 my-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 bg-brand-500/20 border border-brand-400/30 px-4 py-2 rounded-full text-brand-300 font-semibold text-xs uppercase tracking-wider backdrop-blur-md">
-                        <i class="fa-solid fa-house-chimney-user"></i> Nigeria’s Premier Real Estate Marketplace
-                    </div>
+        <!-- ================= PAGE 1: HOME VIEW ================= -->
+        <div id="homeView">
+            <!-- Hero Section -->
+            <header class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white py-24 px-4 overflow-hidden">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+                    <span class="bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs uppercase px-3 py-1.5 rounded-full font-bold tracking-widest inline-block">Nigeria's Most Trusted Real Estate Partner</span>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">Find Your Dream Home & Investment With <span class="text-blue-400">GROWAM NIG LTD</span></h1>
+                    <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto font-normal">We specialize in premium property developments, modern housing estates, land acquisitions, and secure real estate investments across Nigeria.</p>
                     
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-                        We Buy, Sell & Rent <span class="text-brand-400 underline decoration-brand-500/50 underline-offset-8">Properties</span> Across All States
-                    </h1>
-                    
-                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                        Welcome to <strong class="text-white">GROWAM NIG LTD</strong>. Explore over 100+ verified houses, apartments, and lands across every state in Nigeria. Sign up to post your own properties or respond directly to interested buyers!
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <button onclick="switchView('hub')" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-slate-950 px-8 py-4 rounded-2xl font-extrabold text-base transition shadow-xl shadow-brand-500/20 flex items-center justify-center gap-3">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i> Click Here to See Available Rents
+                    <!-- Quick CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                        <button onclick="switchView('hub')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition">
+                            Explore Properties Hub
                         </button>
-                        <button onclick="openUploadModal()" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-2xl font-bold text-base transition backdrop-blur-md flex items-center justify-center gap-3">
-                            <i class="fa-solid fa-cloud-arrow-up text-brand-400"></i> Upload Your Property
+                        <button onclick="openModal('uploadModal')" class="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Your Property
                         </button>
                     </div>
                 </div>
+            </header>
 
-                <!-- 3D Key Handover Animation Preview Card -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="glass-card text-slate-900 p-6 sm:p-8 rounded-3xl shadow-2xl border border-white/50 w-full max-w-md relative overflow-hidden">
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl"></div>
-                        
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg aspect-video mb-6 bg-slate-900 group">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Family moving in happiness" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                                <span class="bg-brand-500 text-slate-950 text-xs font-extrabold px-2.5 py-1 rounded-md w-max mb-1 uppercase tracking-wider">3D Joy Animation</span>
-                                <p class="text-white text-sm font-bold">Family Receiving New Mansion Keys 🔑</p>
+            <!-- Services Section -->
+            <section id="services" class="bg-blue-50 py-16 px-4">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-extrabold text-blue-900 tracking-tight">Our Core Services</h2>
+                        <p class="text-gray-600 mt-2">Comprehensive solutions tailored to meet your real estate and structural investment needs.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100 space-y-4">
+                            <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                                <i class="fa-solid fa-house-chimney-user"></i>
                             </div>
+                            <h3 class="text-xl font-bold text-gray-900">Property Development</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">We design and construct state-of-the-art residential and commercial complexes using modern structural methodologies.</p>
                         </div>
-
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider">
-                                <span>Verified Nationwide</span>
-                                <span class="text-brand-600">100+ Active Listings</span>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100 space-y-4">
+                            <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                                <i class="fa-solid fa-map-location-dot"></i>
                             </div>
-                            <h3 class="text-xl font-black text-slate-900">Your Happiness Starts Here</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">
-                                Join thousands of happy homeowners and tenants who secured verified keys through GROWAM NIG LTD.
-                            </p>
-                            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
-                                <span class="text-xs font-semibold text-slate-500">Need instant help?</span>
-                                <a href="https://wa.me/2349069245040" target="_blank" class="text-xs font-bold text-emerald-600 hover:underline flex items-center gap-1">
-                                    <i class="fa-brands fa-whatsapp text-sm"></i> Chat on WhatsApp
-                                </a>
+                            <h3 class="text-xl font-bold text-gray-900">Land Acquisition & Sales</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Get verified lands free from government acquisition, legal entanglements, or community disputes with immediate documentation.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100 space-y-4">
+                            <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                                <i class="fa-solid fa-handshake-angle"></i>
                             </div>
+                            <h3 class="text-xl font-bold text-gray-900">Real Estate Advisory</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Consult with our property market analysts to make high-yielding capital deployments and secure profitable portfolios.</p>
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
 
-            </div>
-
-            <div class="bg-slate-900/90 border-t border-slate-800 py-6 px-4 backdrop-blur-md relative z-10">
-                <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div>
-                        <div class="text-2xl font-black text-brand-400">36 States</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Nationwide Coverage</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-black text-brand-400">100+ Properties</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Verified Rents & Lands</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-black text-brand-400">Secure SSL</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Protected Database</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-black text-brand-400">Instant Lead</div>
-                        <div class="text-xs text-slate-400 mt-0.5">WhatsApp & Responses</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ================= PAGE 2: PROPERTIES LISTINGS HUB ================= -->
-        <section id="hubView" class="hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            
-            <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-6 sm:p-10 text-white mb-10 shadow-xl flex flex-col md:flex-row justify-between items-center gap-6">
+        <!-- ================= PAGE 2: PROPERTIES HUB VIEW ================= -->
+        <div id="hubView" class="hidden py-12 px-4 max-w-7xl mx-auto">
+            <div class="bg-blue-900 text-white rounded-2xl p-8 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
-                    <span class="bg-brand-500 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider">GROWAM NIG LTD HUB</span>
-                    <h2 class="text-3xl sm:text-4xl font-black mt-2">Explore Listings For Rent & Lands</h2>
-                    <p class="text-slate-300 text-sm mt-1 max-w-xl">
-                        Filter by State, City, Property Type, Bedroom count, or Room count. Sign in to reply to inquiries on properties you posted.
-                    </p>
+                    <h2 class="text-3xl font-extrabold">GROWAM Properties Marketplace</h2>
+                    <p class="text-blue-200 text-sm mt-1">Browse verified houses and lands across Nigeria. Post your own property below.</p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="openUploadModal()" class="bg-brand-500 hover:bg-brand-600 text-slate-950 px-6 py-3.5 rounded-xl font-bold text-sm transition shadow-lg flex items-center gap-2">
-                        <i class="fa-solid fa-circle-plus"></i> Post Property
-                    </button>
-                    <button onclick="switchView('landing')" class="bg-white/10 hover:bg-white/20 text-white px-5 py-3.5 rounded-xl font-semibold text-sm transition">
-                        Back to Home
-                    </button>
-                </div>
-            </div>
-
-            <!-- Search & Filter Toolbar -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-                <div class="lg:col-span-2">
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Search Keywords</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
-                        <input type="text" id="searchInput" placeholder="Location, title, features..." oninput="filterProperties()" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">State</label>
-                    <select id="stateFilter" onchange="filterProperties()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
-                        <option value="">All States</option>
-                        <option value="Lagos">Lagos State</option>
-                        <option value="Abuja">Abuja (FCT)</option>
-                        <option value="Rivers">Rivers State</option>
-                        <option value="Oyo">Oyo State</option>
-                        <option value="Ogun">Ogun State</option>
-                        <option value="Anambra">Anambra State</option>
-                        <option value="Kaduna">Kaduna State</option>
-                        <option value="Enugu">Enugu State</option>
-                        <option value="Delta">Delta State</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Category Type</label>
-                    <select id="typeFilter" onchange="filterProperties()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
-                        <option value="">All Categories</option>
-                        <option value="Rent">Listings for Rent</option>
-                        <option value="Land">Listings for Lands</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Bedrooms</label>
-                    <select id="bedFilter" onchange="filterProperties()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
-                        <option value="">Any Bedrooms</option>
-                        <option value="1">1 Bedroom</option>
-                        <option value="2">2 Bedrooms</option>
-                        <option value="3">3 Bedrooms</option>
-                        <option value="4">4+ Bedrooms</option>
-                    </select>
-                </div>
-
-                <div class="flex items-end">
-                    <button onclick="resetFilters()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 px-4 rounded-xl font-bold text-sm transition">
-                        <i class="fa-solid fa-rotate-right mr-1.5"></i> Reset
-                    </button>
-                </div>
+                <button onclick="openModal('uploadModal')" class="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow transition">
+                    + Upload Property
+                </button>
             </div>
 
             <!-- Listings Grid -->
-            <div id="listingsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-200">
-                <i class="fa-solid fa-house-crack text-5xl text-slate-300 mb-4"></i>
-                <h3 class="text-xl font-bold text-slate-700">No properties match your exact filters</h3>
-                <p class="text-sm text-slate-500 mt-1">Try broadening your search criteria or resetting filters.</p>
-                <button onclick="resetFilters()" class="mt-4 bg-brand-600 text-white px-5 py-2 rounded-xl text-sm font-bold">Reset Filters</button>
+            <div id="listingsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Dynamic Listings Rendered Here -->
             </div>
-        </section>
+        </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white border-t border-slate-800 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8 px-4 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white text-xl font-black">G</div>
-                    <span class="text-lg font-black tracking-tight">GROWAM NIG LTD</span>
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 text-white p-2 rounded-lg">
+                        <i class="fa-solid fa-building-shield text-xl"></i>
+                    </div>
+                    <span class="text-lg font-extrabold tracking-wider uppercase">GROWAM <span class="text-blue-500">NIG LTD</span></span>
                 </div>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Nigeria's trusted real estate marketplace connecting buyers, sellers, and renters. Secure SSL database with instant WhatsApp & inquiry response system.
-                </p>
+                <p class="text-gray-400 text-sm">Providing exceptional real estate services, land banking solutions, and durable development structures nationwide.</p>
             </div>
             <div>
-                <h4 class="text-sm font-bold text-brand-400 uppercase tracking-wider mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-xs text-slate-300">
-                    <li><button onclick="switchView('landing')" class="hover:text-white">Home Landing Page</button></li>
-                    <li><button onclick="switchView('hub')" class="hover:text-white">Listings For Rent</button></li>
-                    <li><button onclick="switchView('hub')" class="hover:text-white">Listings For Lands</button></li>
-                    <li><button onclick="openUploadModal()" class="hover:text-white">Upload Property</button></li>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><button onclick="switchView('home')" class="hover:text-white transition">Home</button></li>
+                    <li><button onclick="switchView('hub')" class="hover:text-white transition">Properties Hub</button></li>
+                    <li><button onclick="openModal('uploadModal')" class="hover:text-white transition">Upload Property</button></li>
+                    <li><a href="#services" class="hover:text-white transition">Our Professional Services</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-sm font-bold text-brand-400 uppercase tracking-wider mb-4">Contact & Connect</h4>
-                <ul class="space-y-2 text-xs text-slate-300">
-                    <li><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> +234 906 924 5040</li>
-                    <li><i class="fa-solid fa-envelope text-brand-400 mr-2"></i> growamnigltd@gmail.com</li>
-                    <li><i class="fa-solid fa-shield-halved text-brand-400 mr-2"></i> SSL Secure Encryption Active</li>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact Info</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><i class="fa-solid fa-location-dot text-blue-500 mr-2"></i> 9 oshundairo st, iyana ipaja Lagos</li>
+                    <li><i class="fa-solid fa-phone text-blue-500 mr-2"></i> +234 906 924 5040</li>
+                    <li><i class="fa-solid fa-envelope text-blue-500 mr-2"></i> Growamnigltd@gmail.com</li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-sm font-bold text-brand-400 uppercase tracking-wider mb-4">Formspree Integration</h4>
-                <p class="text-xs text-slate-400 mb-3">Submit inquiries directly via secure Formspree endpoint.</p>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Newsletter & Inquiries</h4>
+                <p class="text-gray-400 text-sm mb-3">Drop your email to receive updates on new property arrivals.</p>
+                <!-- Formspree Live Linked Form -->
                 <form action="https://formspree.io/f/xljeonba" method="POST" class="space-y-2">
-                    <input type="email" name="email" placeholder="Your email address" required class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white focus:outline-none focus:border-brand-500">
-                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-2 rounded-lg text-xs font-bold transition">Send Inquiry</button>
+                    <input type="email" name="email" required placeholder="Enter your email" class="w-full px-3 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-blue-500">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg text-sm transition">Send Inquiry</button>
                 </form>
             </div>
         </div>
-        <div class="bg-slate-950 py-4 text-center text-xs text-slate-500 border-t border-slate-900">
-            &copy; 2026 GROWAM NIG LTD. All rights reserved. SSL Protected.
+        <div class="max-w-7xl mx-auto pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+            &copy; 2026 GROWAM NIG LTD (RC: 1234567). All rights reserved.
         </div>
     </footer>
 
-
-    <!-- ================= MODAL: AUTH (SIGN IN / SIGN UP) ================= -->
-    <div id="authModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl">
-            <button onclick="closeAuthModal()" class="absolute top-6 right-6 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-700 font-bold transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <div id="authTitleArea" class="mb-6">
-                <span id="authBadge" class="bg-brand-100 text-brand-800 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Secure Account</span>
-                <h3 id="authHeading" class="text-2xl font-black text-slate-900 mt-2">Sign In to GROWAM</h3>
-                <p id="authSub" class="text-xs text-slate-500 mt-1">Access your dashboard to post properties and respond to interested buyers.</p>
-            </div>
-
-            <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
-                <div id="nameFieldGroup" class="hidden">
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
-                    <input type="text" id="authName" placeholder="e.g., John Adebayo" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-1">Welcome Back</h3>
+            <p class="text-sm text-gray-500 mb-6">Log in to manage your saved properties and appointments.</p>
+            
+            <form onsubmit="handleAuthAction(event, 'Login Successful!')" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="user@gmail.com">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address</label>
-                    <input type="email" id="authEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
+                    <input type="password" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="••••••••">
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password (SSL Encrypted)</label>
-                    <input type="password" id="authPassword" required placeholder="••••••••" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+                
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center text-gray-600 cursor-pointer">
+                        <input type="checkbox" class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-300 mr-1.5">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" onclick="openForgotPasswordModal(event)" class="text-blue-600 hover:underline font-bold">Forgot password?</a>
                 </div>
 
-                <button type="submit" id="authSubmitBtn" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-xl font-extrabold text-sm transition shadow-lg shadow-brand-600/20">
-                    Sign In
-                </button>
-
-                <div class="text-center pt-2">
-                    <p id="authSwitchText" class="text-xs text-slate-600">
-                        Don't have an account? <button type="button" onclick="toggleAuthMode()" class="text-brand-600 font-bold hover:underline">Sign Up</button>
-                    </p>
-                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">Log In</button>
             </form>
         </div>
     </div>
 
-
-    <!-- ================= MODAL: PROPERTY DETAILS & INQUIRY RESPONSES ================= -->
-    <div id="detailModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto shadow-2xl">
-            <button onclick="closeDetailModal()" class="absolute top-6 right-6 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-700 font-bold transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <div id="modalContent"></div>
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
+            <button onclick="closeModal('signupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-1">Create Account</h3>
+            <p class="text-sm text-gray-500 mb-6">Register to start buying properties or posting listings.</p>
+            
+            <form onsubmit="handleAuthAction(event, 'Account Created Successfully!')" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="Tijani Salam">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="user@gmail.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
+                    <input type="password" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">Register Account</button>
+            </form>
         </div>
     </div>
 
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
+            <button onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-1">Reset Password</h3>
+            <p class="text-sm text-gray-500 mb-6">Enter your registered email address and we'll send you instructions to reset your password.</p>
+            
+            <form onsubmit="handleForgotPassword(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                    <input type="email" id="forgotEmailInput" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="your@email.com">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">Send Reset Link</button>
+            </form>
+            
+            <div id="forgotSuccessMessage" class="hidden mt-4 p-3 bg-green-100 text-green-700 text-sm rounded-xl text-center font-medium">
+                Password reset instructions have been sent to your email!
+            </div>
+        </div>
+    </div>
 
-    <!-- ================= MODAL: PAID PROPERTY UPLOAD (BANK & FLUTTERWAVE) ================= -->
-    <div id="uploadModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto shadow-2xl">
-            <button onclick="closeUploadModal()" class="absolute top-6 right-6 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-700 font-bold transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
+    <!-- ================= UPLOAD & SUBSCRIPTION PAYMENT MODAL ================= -->
+    <div id="uploadModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('uploadModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
+            
             <div class="mb-6">
-                <span class="bg-brand-100 text-brand-800 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Paid Listing Portal (SSL Secured)</span>
-                <h3 class="text-2xl font-black text-slate-900 mt-2">Upload Your House or Land</h3>
-                <p class="text-xs text-slate-500 mt-1">Select your subscription duration and payment option to publish your listing instantly.</p>
+                <span class="bg-green-100 text-green-800 text-xs font-black px-3 py-1 rounded-full uppercase">Paid Listing Portal</span>
+                <h3 class="text-2xl font-bold text-gray-900 mt-2">Upload House or Land</h3>
+                <p class="text-xs text-gray-500 mt-1">Select your subscription duration and payment option to publish your listing.</p>
             </div>
 
-            <form id="uploadForm" onsubmit="handleUploadSubmit(event)" class="space-y-4">
+            <form onsubmit="handleUploadSubmit(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Property Title</label>
-                    <input type="text" id="upTitle" required placeholder="e.g., Luxury 4 Bedroom Duplex" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Property Title</label>
+                    <input type="text" id="upTitle" required placeholder="e.g., Luxury 4 Bedroom Duplex" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Category Type</label>
-                        <select id="upType" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Category Type</label>
+                        <select id="upType" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
                             <option value="Rent">Listings for Rent</option>
                             <option value="Land">Listings for Lands</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">State in Nigeria</label>
-                        <select id="upState" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
-                            <option value="Lagos">Lagos State</option>
-                            <option value="Abuja">Abuja (FCT)</option>
-                            <option value="Rivers">Rivers State</option>
-                            <option value="Oyo">Oyo State</option>
-                            <option value="Ogun">Ogun State</option>
-                            <option value="Anambra">Anambra State</option>
-                            <option value="Kaduna">Kaduna State</option>
-                            <option value="Enugu">Enugu State</option>
-                            <option value="Delta">Delta State</option>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">State in Nigeria</label>
+                        <select id="upState" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
+                            <option value="Lagos State">Lagos State</option>
+                            <option value="Abuja (FCT)">Abuja (FCT)</option>
+                            <option value="Rivers State">Rivers State</option>
+                            <option value="Oyo State">Oyo State</option>
+                            <option value="Ogun State">Ogun State</option>
+                            <option value="Anambra State">Anambra State</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">City / Area</label>
-                        <input type="text" id="upCity" required placeholder="e.g., Lekki Phase 1" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">City / Location</label>
+                        <input type="text" id="upCity" required placeholder="e.g., Lekki Phase 1" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Bedrooms</label>
-                        <input type="number" id="upBeds" value="3" min="0" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Price (₦)</label>
-                        <input type="text" id="upPrice" required placeholder="e.g., ₦2,500,000 /yr" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Price (₦)</label>
+                        <input type="text" id="upPrice" required placeholder="e.g., ₦3,500,000 /yr" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Upload Images / Video Walkthrough</label>
-                    <input type="file" id="upImages" multiple accept="image/*,video/*" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100">
-                    <p class="text-[11px] text-slate-400 mt-1">Select multiple photos or video tours (up to 50 items).</p>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Property Images & Video Walkthrough</label>
+                    <input type="file" id="upImages" multiple accept="image/*,video/*" class="w-full px-3.5 py-2 border rounded-xl text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                 </div>
 
                 <!-- Subscription Pricing Tiers -->
-                <div class="border-t border-slate-100 pt-3">
-                    <label class="block text-xs font-extrabold text-brand-700 uppercase mb-2"><i class="fa-solid fa-lock text-brand-600 mr-1"></i> Select Subscription Duration</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <label class="border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer hover:border-brand-500 transition has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                <div class="border-t pt-3">
+                    <label class="block text-xs font-extrabold text-blue-900 uppercase mb-2">Select Subscription Plan</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
                             <input type="radio" name="subPlan" value="5000" checked class="sr-only">
-                            <div class="text-xs font-bold text-slate-500">1 Month</div>
-                            <div class="text-sm font-black text-slate-900 mt-1">₦5,000</div>
+                            <div class="text-[11px] font-bold text-gray-500">1 Month</div>
+                            <div class="text-sm font-black text-gray-900">₦5,000</div>
                         </label>
-                        <label class="border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer hover:border-brand-500 transition has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
                             <input type="radio" name="subPlan" value="10000" class="sr-only">
-                            <div class="text-xs font-bold text-slate-500">2 Months</div>
-                            <div class="text-sm font-black text-slate-900 mt-1">₦10,000</div>
+                            <div class="text-[11px] font-bold text-gray-500">2 Months</div>
+                            <div class="text-sm font-black text-gray-900">₦10,000</div>
                         </label>
-                        <label class="border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer hover:border-brand-500 transition has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
                             <input type="radio" name="subPlan" value="15000" class="sr-only">
-                            <div class="text-xs font-bold text-slate-500">3 Months</div>
-                            <div class="text-sm font-black text-slate-900 mt-1">₦15,000</div>
+                            <div class="text-[11px] font-bold text-gray-500">3 Months</div>
+                            <div class="text-sm font-black text-gray-900">₦15,000</div>
                         </label>
-                        <label class="border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer hover:border-brand-500 transition has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
                             <input type="radio" name="subPlan" value="20000" class="sr-only">
-                            <div class="text-xs font-bold text-slate-500">5 Months</div>
-                            <div class="text-sm font-black text-slate-900 mt-1">₦20,000</div>
+                            <div class="text-[11px] font-bold text-gray-500">5 Months</div>
+                            <div class="text-sm font-black text-gray-900">₦20,000</div>
                         </label>
                     </div>
                 </div>
 
-                <!-- Payment Method Options (Flutterwave / Bank Transfer) -->
-                <div class="border-t border-slate-100 pt-3">
-                    <label class="block text-xs font-extrabold text-slate-700 uppercase mb-2"><i class="fa-solid fa-credit-card text-brand-600 mr-1"></i> Choose Payment Gateway / Method</label>
+                <!-- Payment Method Options -->
+                <div class="border-t pt-3">
+                    <label class="block text-xs font-extrabold text-gray-900 uppercase mb-2">Choose Payment Gateway / Method</label>
                     <div class="grid grid-cols-2 gap-3 mb-3">
-                        <label class="border-2 border-brand-600 bg-brand-50 rounded-xl p-3 text-center cursor-pointer transition">
-                            <input type="radio" name="payMethod" value="flutterwave" checked onchange="togglePaymentMethod('flutterwave')" class="mr-1.5 accent-brand-600">
-                            <span class="text-xs font-bold text-slate-900">Flutterwave (Card / Bank)</span>
+                        <label class="border-2 border-blue-600 bg-blue-50 rounded-xl p-3 text-center cursor-pointer">
+                            <input type="radio" name="payMethod" value="flutterwave" checked onchange="togglePaymentMethod('flutterwave')" class="mr-1 accent-blue-600">
+                            <span class="text-xs font-bold text-gray-900">Flutterwave API</span>
                         </label>
-                        <label class="border-2 border-slate-200 rounded-xl p-3 text-center cursor-pointer hover:border-brand-500 transition">
-                            <input type="radio" name="payMethod" value="bank" onchange="togglePaymentMethod('bank')" class="mr-1.5 accent-brand-600">
-                            <span class="text-xs font-bold text-slate-900">Direct Bank Transfer</span>
+                        <label class="border-2 border-gray-200 rounded-xl p-3 text-center cursor-pointer hover:border-blue-500">
+                            <input type="radio" name="payMethod" value="bank" onchange="togglePaymentMethod('bank')" class="mr-1 accent-blue-600">
+                            <span class="text-xs font-bold text-gray-900">Direct Bank Transfer</span>
                         </label>
                     </div>
 
                     <!-- Direct Bank Transfer Sample Info Box -->
-                    <div id="bankDetailsBox" class="hidden bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 space-y-1">
-                        <div class="font-extrabold text-brand-800 mb-1"><i class="fa-solid fa-building-columns mr-1"></i> GROWAM NIG LTD Bank Account Sample:</div>
-                        <div><strong>Bank Name:</strong> Kuda Microfinance Bank (KUDA)</div>
+                    <div id="bankDetailsBox" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-gray-700 space-y-1">
+                        <div class="font-extrabold text-blue-900 mb-1"><i class="fa-solid fa-building-columns mr-1"></i> GROWAM NIG LTD Bank Account Sample:</div>
+                        <div><strong>Bank Name:</strong> Kuda microfinance Bank (GTB)</div>
                         <div><strong>Account Number:</strong> 3003012517 (Sample)</div>
                         <div><strong>Account Name:</strong> GROWAM NIG LTD</div>
-                        <div class="text-[11px] text-slate-500 mt-1">Transfer the exact fee and click publish. Our team will verify your transfer instantly.</div>
+                        <div class="text-[11px] text-gray-500 mt-1">Transfer the exact subscription fee and click publish. Our team will verify instantly.</div>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-xl font-extrabold text-sm transition shadow-lg shadow-brand-600/20 mt-2">
+                <button type="submit" class="w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">
                     Complete Payment & Publish Property
                 </button>
             </form>
         </div>
     </div>
 
-
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <!-- JavaScript Controllers -->
     <script>
-        // Authentication & User Session Management
-        let currentUser = JSON.parse(localStorage.getItem('growam_user')) || null;
-        let isSignUpMode = false;
-
-        function updateAuthUI() {
-            const navArea = document.getElementById('authNavArea');
-            const profileArea = document.getElementById('userProfileArea');
-            const usernameDisplay = document.getElementById('navUsernameDisplay');
-
-            if (currentUser) {
-                navArea.classList.add('hidden');
-                profileArea.classList.remove('flex');
-                profileArea.classList.add('flex');
-                usernameDisplay.textContent = currentUser.name || currentUser.email;
-            } else {
-                profileArea.classList.remove('flex');
-                profileArea.classList.add('hidden');
-                navArea.classList.remove('hidden');
-            }
-        }
-
-        function openAuthModal(mode) {
-            isSignUpMode = (mode === 'signup');
-            const nameGroup = document.getElementById('nameFieldGroup');
-            const heading = document.getElementById('authHeading');
-            const sub = document.getElementById('authSub');
-            const btn = document.getElementById('authSubmitBtn');
-            const switchText = document.getElementById('authSwitchText');
-
-            if (isSignUpMode) {
-                nameGroup.classList.remove('hidden');
-                heading.textContent = 'Create GROWAM Account';
-                sub.textContent = 'Sign up with SSL security to post listings and respond to buyer inquiries.';
-                btn.textContent = 'Sign Up Securely';
-                switchText.innerHTML = `Already have an account? <button type="button" onclick="openAuthModal('signin')" class="text-brand-600 font-bold hover:underline">Sign In</button>`;
-            } else {
-                nameGroup.classList.add('hidden');
-                heading.textContent = 'Sign In to GROWAM';
-                sub.textContent = 'Access your dashboard with SSL protection.';
-                btn.textContent = 'Sign In';
-                switchText.innerHTML = `Don't have an account? <button type="button" onclick="openAuthModal('signup')" class="text-brand-600 font-bold hover:underline">Sign Up</button>`;
-            }
-
-            document.getElementById('authModal').classList.remove('hidden');
-            document.getElementById('authModal').classList.add('flex');
-        }
-
-        function closeAuthModal() {
-            document.getElementById('authModal').classList.remove('flex');
-            document.getElementById('authModal').classList.add('hidden');
-        }
-
-        function toggleAuthMode() {
-            openAuthModal(isSignUpMode ? 'signin' : 'signup');
-        }
-
-        function handleAuthSubmit(event) {
-            event.preventDefault();
-            const email = document.getElementById('authEmail').value;
-            const name = document.getElementById('authName').value || email.split('@')[0];
-
-            currentUser = { name, email };
-            localStorage.setItem('growam_user', JSON.stringify(currentUser));
-            updateAuthUI();
-            closeAuthModal();
-            alert(`Successfully ${isSignUpMode ? 'signed up' : 'signed in'} securely with SSL encryption! Welcome, ${name}.`);
-        }
-
-        function logoutUser() {
-            currentUser = null;
-            localStorage.removeItem('growam_user');
-            updateAuthUI();
-            alert('Signed out successfully.');
-        }
-
-        // Properties Catalog & Filtering
-        const nigerianCities = {
-            'Lagos': ['Lekki', 'Ikoyi', 'Victoria Island', 'Ajah', 'Ikeja', 'Surulere', 'Yaba', 'Magodo', 'Epe', 'Badagry'],
-            'Abuja': ['Maitama', 'Asokoro', 'Gwarinpa', 'Wuse 2', 'Jabi', 'Utako', 'Lugbe', 'Kubwa', 'Garki', 'Guzape'],
-            'Rivers': ['GRA Phase 2', 'Rumuibekwe', 'Trans Amadi', 'Peter Odili', 'Woji', 'Ada George'],
-            'Oyo': ['Bodija', 'Ikolaba', 'Ring Road', 'Akobo', 'Oluyole', 'Challenge'],
-            'Ogun': ['Arepo', 'Magboro', 'Isheri', 'Abeokuta GRA', 'Sagamu'],
-            'Anambra': ['Awka GRA', 'Nnewi', 'Onitsha GRA', 'Udoka Housing'],
-            'Kaduna': ['Barnawa', 'Ungwan Rimi', 'Malali', 'GRA Kaduna'],
-            'Enugu': ['Independence Layout', 'GRA Enugu', 'Thinkers Corner', 'Achara Layout'],
-            'Delta': ['Asaba GRA', 'Effurun', 'Warri GRA', 'Okpanam']
-        };
-
-        const propertyImages = [
-            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1524813686514-a57563d77840?auto=format&fit=crop&w=800&q=80'
+        let sampleProperties = [
+            { id: 1, title: 'Luxury 4 Bedroom Duplex', type: 'Rent', state: 'Lagos State', city: 'Lekki Phase 1', price: '₦4,500,000 /yr', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800' },
+            { id: 2, title: 'Growam Garden Estate Plot', type: 'Land', state: 'Lagos State', city: 'Ibeju Lekki', price: '₦2,500,000', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800' },
+            { id: 3, title: 'Executive 3-Bedroom Apartment', type: 'Rent', state: 'Abuja (FCT)', city: 'Maitama', price: '₦6,000,000 /yr', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800' }
         ];
 
-        let allProperties = [];
-        let propertyInquiries = JSON.parse(localStorage.getItem('growam_inquiries')) || {};
-
-        function generateCatalog() {
-            const states = Object.keys(nigerianCities);
-            let idCounter = 1;
-
-            for (let i = 0; i < 112; i++) {
-                const state = states[i % states.length];
-                const citiesList = nigerianCities[state];
-                const city = citiesList[i % citiesList.length];
-                const isLand = i % 4 === 0;
-                const type = isLand ? 'Land' : 'Rent';
-                const beds = isLand ? 0 : (i % 4) + 1;
-                const rooms = isLand ? 0 : beds + 1;
-                const priceVal = isLand ? (Math.floor(Math.random() * 15) + 2) * 1000000 : (Math.floor(Math.random() * 35) + 1.5) * 200000;
-                const formattedPrice = '₦' + priceVal.toLocaleString() + (isLand ? ' (Outright)' : ' /year');
-                const img = propertyImages[i % propertyImages.length];
-
-                allProperties.push({
-                    id: idCounter++,
-                    poster: 'GROWAM Verified Agent',
-                    title: isLand ? `Prime Multi-Plot Land in ${city}` : `Modern ${beds} Bedroom ${i%2===0?'Duplex':'Apartment'} in ${city}`,
-                    type: type,
-                    state: state,
-                    city: city,
-                    beds: beds,
-                    rooms: rooms,
-                    price: formattedPrice,
-                    image: img,
-                    gallery: [img, propertyImages[(i+1)%propertyImages.length], propertyImages[(i+2)%propertyImages.length]],
-                    description: `Verified ${type.toLowerCase()} property located in the serene neighborhood of ${city}, ${state} State. Features clean documentation and high security.`
-                });
-            }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
-        generateCatalog();
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
 
         function switchView(viewName) {
-            const landing = document.getElementById('landingView');
+            const home = document.getElementById('homeView');
             const hub = document.getElementById('hubView');
-
-            if (viewName === 'landing') {
-                landing.classList.remove('hidden');
+            if (viewName === 'home') {
+                home.classList.remove('hidden');
                 hub.classList.add('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                landing.classList.add('hidden');
+                home.classList.add('hidden');
                 hub.classList.remove('hidden');
-                renderListings(allProperties);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                renderHubListings();
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function renderListings(properties) {
+        function renderHubListings() {
             const grid = document.getElementById('listingsGrid');
-            const emptyState = document.getElementById('emptyState');
             grid.innerHTML = '';
-
-            if (properties.length === 0) {
-                emptyState.classList.remove('hidden');
-                return;
-            } else {
-                emptyState.classList.add('hidden');
-            }
-
-            properties.forEach(p => {
+            sampleProperties.forEach(p => {
                 const card = document.createElement('div');
-                card.className = 'bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col justify-between group';
+                card.className = 'bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between';
                 card.innerHTML = `
-                    <div class="relative aspect-video overflow-hidden bg-slate-100 cursor-pointer" onclick="openDetailModal(${p.id})">
-                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                            ${p.type === 'Rent' ? 'Listings for Rent' : 'Listings for Lands'}
-                        </span>
-                        <span class="absolute bottom-3 right-3 bg-brand-600 text-white text-xs font-black px-3 py-1 rounded-xl shadow-md">
-                            ${p.price}
-                        </span>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-blue-900 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${p.type}</span>
+                        <img src="${p.image}" class="h-48 w-full object-cover">
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center text-xs font-semibold text-slate-500 mb-1">
-                                <i class="fa-solid fa-location-dot text-brand-600 mr-1.5"></i> ${p.city}, ${p.state} State
-                            </div>
-                            <h3 class="text-base font-bold text-slate-900 group-hover:text-brand-600 transition cursor-pointer line-clamp-1" onclick="openDetailModal(${p.id})">${p.title}</h3>
+                            <span class="text-xs font-bold text-gray-500"><i class="fa-solid fa-location-dot text-red-500"></i> ${p.city}, ${p.state}</span>
+                            <h4 class="font-bold text-base text-gray-900 mt-1">${p.title}</h4>
+                            <div class="text-blue-600 font-extrabold text-lg mt-2">${p.price}</div>
                         </div>
-                        <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600 font-medium">
-                            ${p.type === 'Rent' ? `
-                                <span><i class="fa-solid fa-bed text-brand-600 mr-1"></i> ${p.beds} Beds</span>
-                                <span><i class="fa-solid fa-door-open text-brand-600 mr-1"></i> ${p.rooms} Rooms</span>
-                            ` : `
-                                <span class="text-brand-700 font-bold"><i class="fa-solid fa-map text-brand-600 mr-1"></i> Verified Land</span>
-                            `}
-                            <button onclick="openDetailModal(${p.id})" class="text-brand-600 font-bold hover:underline">View Details &rarr;</button>
-                        </div>
+                        <button onclick="alert('Connect with poster or schedule inspection via WhatsApp.')" class="mt-4 w-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 rounded-xl text-xs transition">Inquire Property</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
-        }
-
-        function filterProperties() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const state = document.getElementById('stateFilter').value;
-            const type = document.getElementById('typeFilter').value;
-            const beds = document.getElementById('bedFilter').value;
-
-            const filtered = allProperties.filter(p => {
-                const matchesQuery = p.title.toLowerCase().includes(query) || p.city.toLowerCase().includes(query) || p.state.toLowerCase().includes(query);
-                const matchesState = state === '' || p.state === state;
-                const matchesType = type === '' || p.type === type;
-                const matchesBeds = beds === '' || p.beds.toString() === beds;
-
-                return matchesQuery && matchesState && matchesType && matchesBeds;
-            });
-
-            renderListings(filtered);
-        }
-
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('stateFilter').value = '';
-            document.getElementById('typeFilter').value = '';
-            document.getElementById('bedFilter').value = '';
-            renderListings(allProperties);
-        }
-
-        // Modal Controls & Inquiry Response System
-        function openDetailModal(id) {
-            const p = allProperties.find(item => item.id === id);
-            if (!p) return;
-
-            const modalContent = document.getElementById('modalContent');
-            const whatsappText = encodeURIComponent(`Hello GROWAM NIG LTD, I am interested in this property: *${p.title}* located in ${p.city}, ${p.state} (${p.price}). Please send me more details.`);
-            const propInquiries = propertyInquiries[p.id] || [];
-
-            modalContent.innerHTML = `
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="bg-brand-100 text-brand-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase">${p.type} Property</span>
-                        <span class="text-xl font-black text-brand-700">${p.price}</span>
-                    </div>
-                    <h2 class="text-2xl font-black text-slate-900">${p.title}</h2>
-                    <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-location-dot text-brand-600 mr-1"></i> ${p.city}, ${p.state} State Nigeria | Posted by: <strong>${p.poster || 'GROWAM User'}</strong></p>
-
-                    <div class="grid grid-cols-3 gap-2 pt-2">
-                        ${p.gallery.map(img => `<img src="${img}" class="rounded-xl aspect-video object-cover shadow-sm">`).join('')}
-                    </div>
-
-                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs text-slate-700 leading-relaxed">
-                        <strong class="text-slate-900 block mb-1">Property Description & Walkthrough:</strong>
-                        ${p.description}
-                    </div>
-
-                    <!-- Inquiry & Response Section -->
-                    <div class="border-t border-slate-100 pt-4">
-                        <h4 class="text-xs font-black uppercase text-slate-700 mb-2"><i class="fa-solid fa-comments text-brand-600 mr-1"></i> Interested? Leave an Inquiry or Message</h4>
-                        <div class="space-y-2 mb-3 max-h-36 overflow-y-auto" id="inquiryList_${p.id}">
-                            ${propInquiries.length === 0 ? '<p class="text-xs text-slate-400 italic">No inquiries yet. Be the first to ask a question!</p>' : propInquiries.map(inq => `
-                                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs">
-                                    <div class="font-bold text-slate-900 flex justify-between">
-                                        <span>${inq.author}</span>
-                                        <span class="text-[10px] text-slate-400">${inq.date}</span>
-                                    </div>
-                                    <p class="text-slate-700 mt-0.5">${inq.message}</p>
-                                    ${inq.reply ? `<div class="mt-2 bg-brand-50 border border-brand-200 p-2 rounded-lg text-brand-900"><strong>Owner Response:</strong> ${inq.reply}</div>` : (currentUser ? `<div class="mt-2"><input type="text" id="replyInput_${inq.id}" placeholder="Type response as poster..." class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-xs"><button onclick="sendReply(${p.id}, ${inq.id})" class="mt-1 bg-brand-600 text-white px-3 py-1 rounded text-[10px] font-bold">Send Reply</button></div>` : '')}
-                                </div>
-                            `).join('')}
-                        </div>
-
-                        <div class="flex gap-2">
-                            <input type="text" id="newInquiryText" placeholder="Ask about this property..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-500">
-                            <button onclick="submitInquiry(${p.id})" class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition">Send Inquiry</button>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 flex flex-col sm:flex-row gap-3 border-t border-slate-100">
-                        <a href="https://wa.me/2349069245040?text=${whatsappText}" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-6 rounded-xl font-extrabold text-sm text-center transition shadow-md flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-lg"></i> Connect on WhatsApp
-                        </a>
-                        <button onclick="closeDetailModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 py-3.5 px-6 rounded-xl font-bold text-sm transition">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('detailModal').classList.remove('hidden');
-            document.getElementById('detailModal').classList.add('flex');
-        }
-
-        function closeDetailModal() {
-            document.getElementById('detailModal').classList.remove('flex');
-            document.getElementById('detailModal').classList.add('hidden');
-        }
-
-        function submitInquiry(propId) {
-            const textInput = document.getElementById('newInquiryText');
-            if (!textInput.value.trim()) return;
-
-            if (!propertyInquiries[propId]) propertyInquiries[propId] = [];
-            propertyInquiries[propId].push({
-                id: Date.now(),
-                author: currentUser ? currentUser.name : 'Guest Visitor',
-                message: textInput.value.trim(),
-                date: new Date().toLocaleDateString(),
-                reply: null
-            });
-
-            localStorage.setItem('growam_inquiries', JSON.stringify(propertyInquiries));
-            textInput.value = '';
-            openDetailModal(propId);
-            alert('Inquiry sent successfully!');
-        }
-
-        function sendReply(propId, inquiryId) {
-            const replyInput = document.getElementById(`replyInput_${inquiryId}`);
-            if (!replyInput || !replyInput.value.trim()) return;
-
-            const inqList = propertyInquiries[propId];
-            const target = inqList.find(i => i.id === inquiryId);
-            if (target) {
-                target.reply = replyInput.value.trim();
-                localStorage.setItem('growam_inquiries', JSON.stringify(propertyInquiries));
-                openDetailModal(propId);
-                alert('Response sent successfully!');
-            }
-        }
-
-        function openUploadModal() {
-            if (!currentUser) {
-                alert('Please sign in or sign up first to upload a property.');
-                openAuthModal('signin');
-                return;
-            }
-            document.getElementById('uploadModal').classList.remove('hidden');
-            document.getElementById('uploadModal').classList.add('flex');
-        }
-
-        function closeUploadModal() {
-            document.getElementById('uploadModal').classList.remove('flex');
-            document.getElementById('uploadModal').classList.add('hidden');
         }
 
         function togglePaymentMethod(method) {
@@ -849,7 +476,6 @@
             const type = document.getElementById('upType').value;
             const state = document.getElementById('upState').value;
             const city = document.getElementById('upCity').value;
-            const beds = parseInt(document.getElementById('upBeds').value) || 2;
             const price = document.getElementById('upPrice').value;
             const subPlan = document.querySelector('input[name="subPlan"]:checked').value;
             const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
@@ -863,47 +489,60 @@
                     currency: "NGN",
                     payment_options: "card, banktransfer, ussd",
                     customer: {
-                        email: currentUser.email,
-                        name: currentUser.name,
+                        email: "client@growamnigltd.com",
+                        name: "GROWAM User",
                     },
                     callback: function (data) {
-                        finalizeUpload(title, type, state, city, beds, price);
+                        finalizeUpload(title, type, state, city, price);
                     },
                     onclose: function() {
                         alert('Payment window closed.');
                     }
                 });
             } else {
-                // Direct Bank Transfer verification flow
-                alert(`Bank transfer selected for ₦${parseInt(subPlan).toLocaleString()}. Please ensure you transferred to our Kuda account.`);
-                finalizeUpload(title, type, state, city, beds, price);
+                alert(`Bank transfer selected for ₦${parseInt(subPlan).toLocaleString()}. Please ensure you transferred to our kuda bank account.`);
+                finalizeUpload(title, type, state, city, price);
             }
         }
 
-        function finalizeUpload(title, type, state, city, beds, price) {
-            const newProp = {
-                id: allProperties.length + 1,
-                poster: currentUser.name,
-                title: title,
-                type: type,
-                state: state,
-                city: city,
-                beds: beds,
-                rooms: beds + 1,
-                price: price,
-                image: propertyImages[0],
-                gallery: [propertyImages[0], propertyImages[1]],
-                description: `Newly listed property in ${city}, ${state}. Posted by ${currentUser.name} and verified under SSL security by GROWAM NIG LTD.`
-            };
-
-            allProperties.unshift(newProp);
-            alert('Payment verified! Your property has been successfully published to GROWAM NIG LTD listings.');
-            closeUploadModal();
+        function finalizeUpload(title, type, state, city, price) {
+            sampleProperties.unshift({
+                id: sampleProperties.length + 1,
+                title, type, state, city, price,
+                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800'
+            });
+            alert('Payment verified! Your property has been published successfully.');
+            closeModal('uploadModal');
             switchView('hub');
         }
 
-        // Initialize UI on load
-        updateAuthUI();
+        function handleAuthAction(event, message) {
+            event.preventDefault();
+            alert(message);
+            closeModal('loginModal');
+            closeModal('signupModal');
+        }
+
+        function openForgotPasswordModal(event) {
+            event.preventDefault();
+            closeModal('loginModal');
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+            document.getElementById('forgotSuccessMessage').classList.add('hidden');
+            document.getElementById('forgotEmailInput').value = '';
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            document.getElementById('forgotSuccessMessage').classList.remove('hidden');
+            setTimeout(() => {
+                closeForgotPasswordModal();
+            }, 3000);
+        }
     </script>
 </body>
 </html>
+
