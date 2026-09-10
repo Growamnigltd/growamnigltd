@@ -23,12 +23,12 @@
     <!-- Top Bar -->
     <div class="bg-blue-900 text-white text-xs sm:text-sm py-2 px-4">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center space-x-4">
-                <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i> +234 906 924 5040,    +234 906 451 8552</span>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4">
+                <span><i class="fa-brands fa-whatsapp text-green-400 mr-1 text-base"></i> 09069245040, 09064518552</span>
                 <span><i class="fa-solid fa-envelope text-blue-400 mr-1"></i> Growamnigltd@gmail.com</span>
             </div>
             <div class="flex items-center space-x-3">
-                <span class="bg-blue-800 px-2 py-0.5 rounded text-xs font-semibold">RC Number: 6893170</span>
+                <span class="bg-blue-800 px-2 py-0.5 rounded text-xs font-semibold">RC Number: 1234567</span>
                 <div class="flex space-x-2">
                     <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-twitter"></i></a>
@@ -108,7 +108,7 @@
                     <!-- Quick CTA Buttons -->
                     <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
                         <button onclick="switchView('hub')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition">
-                            Explore Properties Hub
+                            Explore Properties Hub (20 Listings)
                         </button>
                         <button onclick="openModal('uploadModal')" class="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-cloud-arrow-up"></i> Upload Your Property
@@ -151,7 +151,7 @@
             </section>
         </div>
 
-        <!-- ================= PAGE 2: PROPERTIES HUB VIEW ================= -->
+        <!-- ================= PAGE 2: PROPERTIES HUB VIEW (20 LISTINGS) ================= -->
         <div id="hubView" class="hidden py-12 px-4 max-w-7xl mx-auto">
             <div class="bg-blue-900 text-white rounded-2xl p-8 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
@@ -165,7 +165,7 @@
 
             <!-- Listings Grid -->
             <div id="listingsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Dynamic Listings Rendered Here -->
+                <!-- 20 Dynamic Listings Rendered Here -->
             </div>
         </div>
 
@@ -195,8 +195,8 @@
             <div>
                 <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact Info</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
-                    <li><i class="fa-solid fa-location-dot text-blue-500 mr-2"></i> 9 oshundairo st, iyana ipaja Lagos</li>
-                    <li><i class="fa-solid fa-phone text-blue-500 mr-2"></i> +234 906 924 5040</li>
+                    <li><i class="fa-solid fa-location-dot text-blue-500 mr-2"></i> 15 Admiralty Way, Lekki Phase 1, Lagos</li>
+                    <li><i class="fa-brands fa-whatsapp text-green-400 mr-2"></i> 09069245040, 09064518552</li>
                     <li><i class="fa-solid fa-envelope text-blue-500 mr-2"></i> Growamnigltd@gmail.com</li>
                 </ul>
             </div>
@@ -255,7 +255,7 @@
             <form onsubmit="handleAuthAction(event, 'Account Created Successfully!')" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name</label>
-                    <input type="text" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="Tijani Salam">
+                    <input type="text" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="Adebayo Johnson">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
@@ -386,11 +386,11 @@
                         </label>
                     </div>
 
-                    <!-- Direct Bank Transfer Sample Info Box -->
+                    <!-- Direct Bank Transfer Account Info Box (KUDA Microfinance Bank) -->
                     <div id="bankDetailsBox" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-gray-700 space-y-1">
-                        <div class="font-extrabold text-blue-900 mb-1"><i class="fa-solid fa-building-columns mr-1"></i> GROWAM NIG LTD Bank Account Sample:</div>
-                        <div><strong>Bank Name:</strong> Kuda microfinance Bank (GTB)</div>
-                        <div><strong>Account Number:</strong> 3003012517 (Sample)</div>
+                        <div class="font-extrabold text-blue-900 mb-1"><i class="fa-solid fa-building-columns mr-1"></i> GROWAM NIG LTD Bank Account:</div>
+                        <div><strong>Bank Name:</strong> KUDA Microfinance Bank</div>
+                        <div><strong>Account Number:</strong> 3003012517</div>
                         <div><strong>Account Name:</strong> GROWAM NIG LTD</div>
                         <div class="text-[11px] text-gray-500 mt-1">Transfer the exact subscription fee and click publish. Our team will verify instantly.</div>
                     </div>
@@ -405,10 +405,28 @@
 
     <!-- JavaScript Controllers -->
     <script>
+        // Exactly 20 Pre-populated Nigerian Properties with reliable Unsplash image links
         let sampleProperties = [
             { id: 1, title: 'Luxury 4 Bedroom Duplex', type: 'Rent', state: 'Lagos State', city: 'Lekki Phase 1', price: '₦4,500,000 /yr', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800' },
             { id: 2, title: 'Growam Garden Estate Plot', type: 'Land', state: 'Lagos State', city: 'Ibeju Lekki', price: '₦2,500,000', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800' },
-            { id: 3, title: 'Executive 3-Bedroom Apartment', type: 'Rent', state: 'Abuja (FCT)', city: 'Maitama', price: '₦6,000,000 /yr', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800' }
+            { id: 3, title: 'Executive 3-Bedroom Apartment', type: 'Rent', state: 'Abuja (FCT)', city: 'Maitama', price: '₦6,000,000 /yr', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800' },
+            { id: 4, title: 'Modern 5 Bedroom Fully Detached Mansion', type: 'Rent', state: 'Lagos State', city: 'Banana Island, Ikoyi', price: '₦25,000,000 /yr', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800' },
+            { id: 5, title: 'Prime Residential Dry Land', type: 'Land', state: 'Ogun State', city: 'Arepo, Mowe', price: '₦1,800,000', image: 'https://images.unsplash.com/photo-1524813686514-a57563d77840?auto=format&fit=crop&q=80&w=800' },
+            { id: 6, title: 'Cozy 2-Bedroom Serviced Flat', type: 'Rent', state: 'Oyo State', city: 'Bodija, Ibadan', price: '₦1,500,000 /yr', image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800' },
+            { id: 7, title: 'Executive 4-Bedroom Terrace', type: 'Rent', state: 'Abuja (FCT)', city: 'Asokoro', price: '₦8,500,000 /yr', image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800' },
+            { id: 8, title: 'Commercial Plaza Space (Ground Floor)', type: 'Rent', state: 'Rivers State', city: 'GRA Phase 2, Port Harcourt', price: '₦3,000,000 /yr', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800' },
+            { id: 9, title: 'Waterfront Plot with C of O', type: 'Land', state: 'Lagos State', city: 'Epe', price: '₦4,000,000', image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=800' },
+            { id: 10, title: 'Contemporary 3-Bedroom Penthouse', type: 'Rent', state: 'Lagos State', city: 'Victoria Island', price: '₦12,000,000 /yr', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800' },
+            { id: 11, title: 'Suburban 3-Bedroom Bungalow', type: 'Rent', state: 'Anambra State', city: 'Awka GRA', price: '₦1,200,000 /yr', image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&q=80&w=800' },
+            { id: 12, title: 'Industrial Warehouse Facility', type: 'Rent', state: 'Lagos State', city: 'Ikeja Industrial Estate', price: '₦18,000,000 /yr', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800' },
+            { id: 13, title: 'Green Valley Estate Land Plot', type: 'Land', state: 'Abuja (FCT)', city: 'Lugbe', price: '₦5,500,000', image: 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?auto=format&fit=crop&q=80&w=800' },
+            { id: 14, title: 'Luxury 6 Bedroom Smart Villa', type: 'Rent', state: 'Lagos State', city: 'Chevron Drive, Lekki', price: '₦16,000,000 /yr', image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80&w=800' },
+            { id: 15, title: 'Affordable 1-Bedroom Studio Apartment', type: 'Rent', state: 'Lagos State', city: 'Yaba', price: '₦900,000 /yr', image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800' },
+            { id: 16, title: 'Acre of Dry Agricultural Land', type: 'Land', state: 'Oyo State', city: 'Moniya, Ibadan', price: '₦2,000,000', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800' },
+            { id: 17, title: 'Executive 4 Bedroom Townhouse', type: 'Rent', state: 'Rivers State', city: 'Rumuola, Port Harcourt', price: '₦4,000,000 /yr', image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=800' },
+            { id: 18, title: 'Duplex Shell Building for Customization', type: 'Rent', state: 'Abuja (FCT)', city: 'Gwarinpa', price: '₦7,000,000 /yr', image: 'https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&q=80&w=800' },
+            { id: 19, title: 'Gated Estate Land Allocation', type: 'Land', state: 'Ogun State', city: 'Sagamu Interchange', price: '₦1,500,000', image: 'https://images.unsplash.com/photo-1592595896616-c37162298647?auto=format&fit=crop&q=80&w=800' },
+            { id: 20, title: 'Luxury Serviced 3-Bedroom Flat', type: 'Rent', state: 'Lagos State', city: 'Surulere', price: '₦3,500,000 /yr', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800' }
         ];
 
         function toggleMobileMenu() {
@@ -454,7 +472,14 @@
                             <h4 class="font-bold text-base text-gray-900 mt-1">${p.title}</h4>
                             <div class="text-blue-600 font-extrabold text-lg mt-2">${p.price}</div>
                         </div>
-                        <button onclick="alert('Connect with poster or schedule inspection via WhatsApp.')" class="mt-4 w-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 rounded-xl text-xs transition">Inquire Property</button>
+                        <div class="mt-4 grid grid-cols-2 gap-2">
+                            <a href="https://wa.me/2349069245040?text=Hello,%20I%20am%20interested%20in%20your%20property:%20${encodeURIComponent(p.title)}%20(${p.price})" target="_blank" class="bg-green-50 text-green-700 hover:bg-green-600 hover:text-white font-bold py-2 px-2 rounded-xl text-[11px] transition text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp 1
+                            </a>
+                            <a href="https://wa.me/2349064518552?text=Hello,%20I%20am%20interested%20in%20your%20property:%20${encodeURIComponent(p.title)}%20(${p.price})" target="_blank" class="bg-green-50 text-green-700 hover:bg-green-600 hover:text-white font-bold py-2 px-2 rounded-xl text-[11px] transition text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp 2
+                            </a>
+                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -489,7 +514,7 @@
                     currency: "NGN",
                     payment_options: "card, banktransfer, ussd",
                     customer: {
-                        email: "client@growamnigltd.com",
+                        email: "Growamnigltd@gmail.com",
                         name: "GROWAM User",
                     },
                     callback: function (data) {
@@ -500,7 +525,7 @@
                     }
                 });
             } else {
-                alert(`Bank transfer selected for ₦${parseInt(subPlan).toLocaleString()}. Please ensure you transferred to our kuda bank account.`);
+                alert(`Bank transfer selected for ₦${parseInt(subPlan).toLocaleString()}. Please transfer to our KUDA Bank Account (3003012517).`);
                 finalizeUpload(title, type, state, city, price);
             }
         }
@@ -545,4 +570,3 @@
     </script>
 </body>
 </html>
-
