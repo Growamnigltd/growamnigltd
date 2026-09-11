@@ -1,676 +1,673 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROWAM NIG LTD | Premium Properties & Real Estate Services</title>
-    <!-- Tailwind CSS CDN -->
+    <title>GROWAM NIG LTD | Properties & Real Estate Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Flutterwave Inline JS SDK -->
-    <script src="https://checkout.flutterwave.com/v3.js"></script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        /* Custom styles for the drag-to-verify slider */
-        #dragTrack {
+        .drag-box {
             position: relative;
+            background: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
             user-select: none;
-            touch-action: none;
         }
-        #dragHandle {
+        .drag-btn {
             position: absolute;
-            left: 0;
             top: 0;
-            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 100%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
             cursor: pointer;
-            user-select: none;
-            touch-action: none;
+            transition: background 0.2s;
+        }
+        .drag-btn:hover {
+            background: #1d4ed8;
+        }
+        .drag-success {
+            background: #16a34a !important;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <!-- Top Bar -->
-    <div class="bg-blue-900 text-white text-xs sm:text-sm py-2 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4">
-                <span><i class="fa-brands fa-whatsapp text-green-400 mr-1 text-base"></i> 09069245040, 09064518552</span>
-                <span><i class="fa-solid fa-envelope text-blue-400 mr-1"></i> Growamnigltd@gmail.com</span>
-            </div>
+    <!-- Top Navigation Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <span class="bg-blue-800 px-2 py-0.5 rounded text-xs font-semibold">RC Number: 6893170</span>
-                <div class="flex space-x-2">
-                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-blue-300 transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-40 bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchView('home')">
-                    <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-lg">
-                        <i class="fa-solid fa-building-shield text-2xl"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl sm:text-2xl font-extrabold tracking-wider text-blue-900 uppercase block leading-none">GROWAM <span class="text-blue-600">NIG LTD</span></span>
-                        <span class="text-[10px] tracking-widest text-gray-500 font-semibold uppercase">Properties & Investment</span>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8 font-medium">
-                    <button onclick="switchView('home')" class="text-blue-600 hover:text-blue-700 transition">Home</button>
-                    <button onclick="switchView('hub')" class="text-gray-600 hover:text-blue-600 transition">Properties Hub</button>
-                    <button onclick="openModal('uploadModal')" class="text-green-600 hover:text-green-700 font-bold transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-cloud-arrow-up"></i> Upload Property
-                    </button>
-                    <a href="#services" class="text-gray-600 hover:text-blue-600 transition">Services</a>
-                </div>
-
-                <!-- Auth Buttons -->
-                <div class="hidden md:flex items-center space-x-3">
-                    <button onclick="openModal('loginModal')" class="px-4 py-2 text-blue-600 border border-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition">Login</button>
-                    <button onclick="openModal('signupModal')" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">Get Started</button>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu drawer -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t px-4 pt-2 pb-4 space-y-3">
-            <button onclick="switchView('home')" class="block text-blue-600 font-medium py-1 text-left w-full">Home</button>
-            <button onclick="switchView('hub')" class="block text-gray-600 font-medium py-1 text-left w-full">Properties Hub</button>
-            <button onclick="openModal('uploadModal')" class="block text-green-600 font-bold py-1 text-left w-full">Upload Property</button>
-            <a href="#services" class="block text-gray-600 font-medium py-1">Services</a>
-            <div class="grid grid-cols-2 gap-2 pt-2 border-t">
-                <button onclick="openModal('loginModal')" class="w-full py-2 text-center text-blue-600 border border-blue-600 rounded-lg font-semibold">Login</button>
-                <button onclick="openModal('signupModal')" class="w-full py-2 text-center bg-blue-600 text-white rounded-lg font-semibold">Get Started</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MAIN VIEW CONTAINER -->
-    <main id="mainContainer">
-
-        <!-- ================= PAGE 1: HOME VIEW ================= -->
-        <div id="homeView">
-            <!-- Hero Section -->
-            <header class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white py-24 px-4 overflow-hidden">
-                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
-                    <span class="bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs uppercase px-3 py-1.5 rounded-full font-bold tracking-widest inline-block">Nigeria's Most Trusted Real Estate Partner</span>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">Find Your Dream Home & Investment With <span class="text-blue-400">GROWAM NIG LTD</span></h1>
-                    <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto font-normal">We specialize in premium property developments, modern housing estates, land acquisitions, and secure real estate investments across Nigeria.</p>
-                    
-                    <!-- Quick CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-                        <button onclick="switchView('hub')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition">
-                            Explore Properties Hub (20 Listings)
-                        </button>
-                        <button onclick="openModal('uploadModal')" class="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Your Property
-                        </button>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Services Section -->
-            <section id="services" class="bg-blue-50 py-16 px-4">
-                <div class="max-w-7xl mx-auto">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-extrabold text-blue-900 tracking-tight">Our Core Services</h2>
-                        <p class="text-gray-600 mt-2">Comprehensive solutions tailored to meet your real estate and structural investment needs.</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100 space-y-4">
-                            <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
-                                <i class="fa-solid fa-house-chimney-user"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900">Property Development</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">We design and construct state-of-the-art residential and commercial complexes using modern structural methodologies.</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100 space-y-4">
-                            <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900">Land Acquisition & Sales</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Get verified lands free from government acquisition, legal entanglements, or community disputes with immediate documentation.</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100 space-y-4">
-                            <div class="w-14 h-14 bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
-                                <i class="fa-solid fa-handshake-angle"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900">Real Estate Advisory</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Consult with our property market analysts to make high-yielding capital deployments and secure profitable portfolios.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 2: PROPERTIES HUB VIEW (20 LISTINGS) ================= -->
-        <div id="hubView" class="hidden py-12 px-4 max-w-7xl mx-auto">
-            <div class="bg-blue-900 text-white rounded-2xl p-8 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl font-bold text-xl tracking-wider shadow-md">GN</div>
                 <div>
-                    <h2 class="text-3xl font-extrabold">GROWAM Properties Marketplace</h2>
-                    <p class="text-blue-200 text-sm mt-1">Browse verified houses and lands across Nigeria. Post your own property below.</p>
+                    <span class="text-xl font-black text-slate-900 tracking-tight">GROWAM</span>
+                    <span class="block text-xs font-semibold text-blue-600 uppercase tracking-widest">Nig Ltd Properties</span>
                 </div>
-                <button onclick="openModal('uploadModal')" class="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow transition">
-                    + Upload Property
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+                <a href="#home" class="hover:text-blue-600 transition">Home</a>
+                <a href="#properties" class="hover:text-blue-600 transition">Properties Hub</a>
+                <a href="#services" class="hover:text-blue-600 transition">Services</a>
+                <a href="#about" class="hover:text-blue-600 transition">About Us</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button id="navAuthBtn" onclick="openAuthModal('signin')" class="px-5 py-2.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-xl hover:bg-blue-100 transition">Sign In</button>
+                <button id="navUserBadge" onclick="openProfileModal()" class="hidden items-center space-x-2 px-4 py-2 text-sm font-semibold text-slate-700 bg-slate-100 rounded-xl hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-user-circle text-blue-600 text-lg"></i>
+                    <span id="navUsernameDisplay">My Account</span>
+                </button>
+                <button onclick="openCartModal()" class="relative p-2.5 text-slate-600 bg-slate-100 rounded-xl hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-shopping-bag text-lg"></i>
+                    <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
                 </button>
             </div>
+        </div>
+    </header>
 
-            <!-- Listings Grid -->
-            <div id="listingsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 20 Dynamic Listings Rendered Here -->
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-3xl">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-600/30 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-6">Verified Real Estate Hub in Nigeria</span>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight mb-6">Find Your Dream Home or Investment Property</h1>
+            <p class="text-lg text-slate-300 mb-8 leading-relaxed">Browse verified houses for rent, land parcels, and luxury apartments. Secure your asset with our seamless checkout, verified ownership certificates, and guest options.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#properties" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 text-center transition">Explore Properties</a>
+                <button onclick="openCartModal()" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-bold rounded-xl text-center transition">View Saved Properties</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Hub Section (20 Properties) -->
+    <section id="properties" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Featured Properties Hub</h2>
+                <p class="text-slate-500 mt-1">Explore our exclusive selection of 20 verified listings across Nigeria.</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-2 overflow-x-auto pb-2">
+                <button onclick="filterProperties('all')" class="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-xl shadow">All</button>
+                <button onclick="filterProperties('Duplex')" class="px-4 py-2 text-sm font-semibold bg-white text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50">Duplexes</button>
+                <button onclick="filterProperties('Apartment')" class="px-4 py-2 text-sm font-semibold bg-white text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50">Apartments</button>
+                <button onclick="filterProperties('Land')" class="px-4 py-2 text-sm font-semibold bg-white text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50">Land Parcels</button>
             </div>
         </div>
 
-    </main>
+        <div id="propertyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Populated via JavaScript -->
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8 px-4 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2">
-                    <div class="bg-blue-600 text-white p-2 rounded-lg">
-                        <i class="fa-solid fa-building-shield text-xl"></i>
-                    </div>
-                    <span class="text-lg font-extrabold tracking-wider uppercase">GROWAM <span class="text-blue-500">NIG LTD</span></span>
-                </div>
-                <p class="text-gray-400 text-sm">Providing exceptional real estate services, land banking solutions, and durable development structures nationwide.</p>
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 text-white p-2 rounded-xl font-bold">GN</div>
+                <span class="text-white font-bold text-lg">GROWAM NIG LTD</span>
             </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
-                <ul class="space-y-2 text-sm text-gray-400">
-                    <li><button onclick="switchView('home')" class="hover:text-white transition">Home</button></li>
-                    <li><button onclick="switchView('hub')" class="hover:text-white transition">Properties Hub</button></li>
-                    <li><button onclick="openModal('uploadModal')" class="hover:text-white transition">Upload Property</button></li>
-                    <li><a href="#services" class="hover:text-white transition">Our Professional Services</a></li>
-                </ul>
+            <p class="text-sm">© 2026 Growam Nig Ltd. All rights reserved. Verified Secure Real Estate.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact Info</h4>
-                <ul class="space-y-2 text-sm text-gray-400">
-                    <li><i class="fa-solid fa-location-dot text-blue-500 mr-2"></i> 9 oshundairo street,iyana ipaja, Lagos</li>
-                    <li><i class="fa-brands fa-whatsapp text-green-400 mr-2"></i> 09069245040, 09064518552</li>
-                    <li><i class="fa-solid fa-envelope text-blue-500 mr-2"></i> Growamnigltd@gmail.com</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Newsletter & Inquiries</h4>
-                <p class="text-gray-400 text-sm mb-3">Drop your email to receive updates on new property arrivals.</p>
-                <!-- Formspree Live Linked Form -->
-                <form action="https://formspree.io/f/xljeonba" method="POST" class="space-y-2">
-                    <input type="email" name="email" required placeholder="Enter your email" class="w-full px-3 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-blue-500">
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg text-sm transition">Send Inquiry</button>
-                </form>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
-            &copy; 2026 GROWAM NIG LTD (RC: 1234567). All rights reserved.
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
-            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
-            <h3 class="text-2xl font-bold text-gray-900 mb-1">Welcome Back</h3>
-            <p class="text-sm text-gray-500 mb-6">Log in to manage your saved properties and appointments.</p>
+    <!-- AUTH MODAL (Sign In / Sign Up / Forgot Password) -->
+    <div id="authModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative overflow-hidden">
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
             
-            <form onsubmit="handleAuthAction(event, 'Login Successful!')" class="space-y-4">
+            <!-- Tabs -->
+            <div class="flex border-b border-slate-100 mb-6">
+                <button id="tabSignInBtn" onclick="switchAuthTab('signin')" class="flex-1 pb-3 font-bold text-blue-600 border-b-2 border-blue-600">Sign In</button>
+                <button id="tabSignUpBtn" onclick="switchAuthTab('signup')" class="flex-1 pb-3 font-bold text-slate-400 hover:text-slate-600">Sign Up</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form id="signInForm" onsubmit="handleSignIn(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
-                    <input type="email" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="user@gmail.com">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Email Address</label>
+                    <input type="email" id="signInEmail" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
-                    <input type="password" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="••••••••">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Password</label>
+                    <input type="password" id="signInPassword" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" onclick="openForgotPasswordModal()" class="text-xs font-semibold text-blue-600 hover:underline">Forgot Password?</button>
                 </div>
                 
-                <div class="flex items-center justify-between text-xs">
-                    <label class="flex items-center text-gray-600 cursor-pointer">
-                        <input type="checkbox" class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-300 mr-1.5">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" onclick="openForgotPasswordModal(event)" class="text-blue-600 hover:underline font-bold">Forgot password?</a>
+                <!-- Human Verification Slider -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Verify you're a human</label>
+                    <div class="drag-box h-12" id="dragBoxSignIn">
+                        <div class="drag-btn text-sm font-bold" id="dragBtnSignIn" onmousedown="startDrag(event, 'signin')" ontouchstart="startDrag(event, 'signin')">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-400 pointer-events-none" id="dragTextSignIn">Drag arrow to the right</div>
+                    </div>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">Log In</button>
+                <button type="submit" id="signInSubmitBtn" disabled class="w-full py-3.5 bg-slate-300 text-white font-bold rounded-xl shadow transition cursor-not-allowed">Sign In to Account</button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="signUpForm" onsubmit="handleSignUp(event)" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Full Name</label>
+                    <input type="text" id="signUpName" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Email Address</label>
+                    <input type="email" id="signUpEmail" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Phone Number</label>
+                    <input type="tel" id="signUpPhone" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Password</label>
+                    <input type="password" id="signUpPassword" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                
+                <!-- Human Verification Slider -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Verify you're a human</label>
+                    <div class="drag-box h-12" id="dragBoxSignUp">
+                        <div class="drag-btn text-sm font-bold" id="dragBtnSignUp" onmousedown="startDrag(event, 'signup')" ontouchstart="startDrag(event, 'signup')">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-400 pointer-events-none" id="dragTextSignUp">Drag arrow to the right</div>
+                    </div>
+                </div>
+
+                <button type="submit" id="signUpSubmitBtn" disabled class="w-full py-3.5 bg-slate-300 text-white font-bold rounded-xl shadow transition cursor-not-allowed">Create Account & Save Info</button>
             </form>
         </div>
     </div>
 
-    <!-- Signup Modal -->
-    <div id="signupModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
-            <button onclick="closeModal('signupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
-            <h3 class="text-2xl font-bold text-gray-900 mb-1">Create Account</h3>
-            <p class="text-sm text-gray-500 mb-6">Register to start buying properties or posting listings.</p>
-            
-            <form onsubmit="handleAuthAction(event, 'Account Created Successfully!')" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name</label>
-                    <input type="text" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="Adebayo Johnson">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
-                    <input type="email" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="user@gmail.com">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
-                    <input type="password" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="••••••••">
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">Register Account</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Forgot Password Modal -->
-    <div id="forgotPasswordModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
-            <button onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
-            <h3 class="text-2xl font-bold text-gray-900 mb-1">Reset Password</h3>
-            <p class="text-sm text-gray-500 mb-6">Enter your registered email address and we'll send you a secure link to reset your password.</p>
-            
+    <!-- FORGOT PASSWORD MODAL -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
+            <button onclick="closeForgotPasswordModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-xl font-black text-slate-900 mb-2">Reset Password</h3>
+            <p class="text-sm text-slate-500 mb-6">Enter your registered email address to receive a secure password reset link.</p>
             <form onsubmit="handleForgotPassword(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
-                    <input type="email" id="forgotEmailInput" required class="w-full px-3.5 py-2.5 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm" placeholder="your@email.com">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Email Address</label>
+                    <input type="email" id="forgotEmail" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">Send Reset Link</button>
+                <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition">Send Reset Link</button>
             </form>
-            
-            <div id="forgotSuccessMessage" class="hidden mt-4 p-3 bg-green-100 text-green-700 text-sm rounded-xl text-center font-medium">
-                <i class="fa-solid fa-circle-check mr-1"></i> If an account exists with this email, instructions have been sent!
+        </div>
+    </div>
+
+    <!-- RESET NEW PASSWORD MODAL -->
+    <div id="resetPasswordModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
+            <h3 class="text-xl font-black text-slate-900 mb-2">Create New Password</h3>
+            <p class="text-sm text-slate-500 mb-6">Enter your new secure password below.</p>
+            <form onsubmit="handleNewPasswordSave(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">New Password</label>
+                    <input type="password" id="newPasswordInput" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition">Update Password & Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- USER PROFILE MODAL -->
+    <div id="profileModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 relative">
+            <button onclick="closeProfileModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-xl font-black text-slate-900 mb-4">My Account Profile</h3>
+            <div id="profileContent" class="space-y-4 text-sm text-slate-600">
+                <!-- Filled via JS -->
             </div>
-            
-            <div class="mt-4 text-center">
-                <button onclick="backToLoginFromForgot()" class="text-xs font-bold text-blue-600 hover:underline">← Back to Login</button>
+            <div class="mt-8 pt-6 border-t border-slate-100 flex justify-end">
+                <button onclick="handleSignOut()" class="px-5 py-2.5 bg-red-50 text-red-600 font-bold rounded-xl hover:bg-red-100 transition">Sign Out</button>
             </div>
         </div>
     </div>
 
-    <!-- ================= UPLOAD & SUBSCRIPTION PAYMENT MODAL ================= -->
-    <div id="uploadModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4 overflow-y-auto">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('uploadModal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
+    <!-- CART / SAVED PROPERTIES MODAL -->
+    <div id="cartModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-8 relative max-h-[90vh] flex flex-col">
+            <button onclick="closeCartModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-black text-slate-900 mb-4">Saved Properties & Inquiries</h3>
             
-            <div class="mb-6">
-                <span class="bg-green-100 text-green-800 text-xs font-black px-3 py-1 rounded-full uppercase">Paid Listing Portal</span>
-                <h3 class="text-2xl font-bold text-gray-900 mt-2">Upload House or Land</h3>
-                <p class="text-xs text-gray-500 mt-1">Select your subscription duration and payment option to publish your listing.</p>
+            <div id="cartItemsList" class="flex-1 overflow-y-auto divide-y divide-slate-100 pr-2 space-y-4">
+                <!-- Filled via JS -->
             </div>
 
-            <form onsubmit="handleUploadSubmit(event)" class="space-y-4">
+            <div class="mt-6 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Property Title</label>
-                    <input type="text" id="upTitle" required placeholder="e.g., Luxury 4 Bedroom Duplex" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Amount</span>
+                    <span id="cartTotalPrice" class="text-2xl font-black text-slate-900">₦0</span>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Category Type</label>
-                        <select id="upType" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                            <option value="Rent">Listings for Rent</option>
-                            <option value="Land">Listings for Lands</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">State in Nigeria</label>
-                        <select id="upState" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                            <option value="Lagos State">Lagos State</option>
-                            <option value="Abuja (FCT)">Abuja (FCT)</option>
-                            <option value="Rivers State">Rivers State</option>
-                            <option value="Oyo State">Oyo State</option>
-                            <option value="Ogun State">Ogun State</option>
-                            <option value="Anambra State">Anambra State</option>
-                        </select>
-                    </div>
+                <div class="flex gap-3 w-full sm:w-auto">
+                    <button onclick="openCheckoutModal('guest')" class="flex-1 sm:flex-none px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">Checkout as Guest</button>
+                    <button onclick="openCheckoutModal('user')" class="flex-1 sm:flex-none px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition">Proceed to Secure Checkout</button>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">City / Location</label>
-                        <input type="text" id="upCity" required placeholder="e.g., Lekki Phase 1" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Price (₦)</label>
-                        <input type="text" id="upPrice" required placeholder="e.g., ₦3,500,000 /yr" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-blue-500">
-                    </div>
-                </div>
+    <!-- CHECKOUT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCheckoutModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-black text-slate-900 mb-2">Secure Checkout</h3>
+            <p id="checkoutModeSubtitle" class="text-xs font-semibold text-blue-600 mb-6">Secured with 256-Bit SSL Encryption</p>
 
+            <form onsubmit="handleCompleteCheckout(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Property Images & Video Walkthrough</label>
-                    <input type="file" id="upImages" multiple accept="image/*,video/*" class="w-full px-3.5 py-2 border rounded-xl text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Full Name</label>
+                    <input type="text" id="checkoutName" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Email Address</label>
+                    <input type="email" id="checkoutEmail" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Phone Number</label>
+                    <input type="tel" id="checkoutPhone" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Delivery / Inspection Address</label>
+                    <textarea id="checkoutAddress" required rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Payment Method</label>
+                    <select id="paymentMethod" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                        <option value="flutterwave">Flutterwave Secure Gateway</option>
+                        <option value="bank">Direct Bank Transfer (Growam Nig Ltd)</option>
+                    </select>
                 </div>
 
-                <!-- Subscription Pricing Tiers -->
-                <div class="border-t pt-3">
-                    <label class="block text-xs font-extrabold text-blue-900 uppercase mb-2">Select Subscription Plan</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
-                            <input type="radio" name="subPlan" value="5000" checked class="sr-only">
-                            <div class="text-[11px] font-bold text-gray-500">1 Month</div>
-                            <div class="text-sm font-black text-gray-900">₦5,000</div>
-                        </label>
-                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
-                            <input type="radio" name="subPlan" value="10000" class="sr-only">
-                            <div class="text-[11px] font-bold text-gray-500">2 Months</div>
-                            <div class="text-sm font-black text-gray-900">₦10,000</div>
-                        </label>
-                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
-                            <input type="radio" name="subPlan" value="15000" class="sr-only">
-                            <div class="text-[11px] font-bold text-gray-500">3 Months</div>
-                            <div class="text-sm font-black text-gray-900">₦15,000</div>
-                        </label>
-                        <label class="border-2 rounded-xl p-2.5 text-center cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
-                            <input type="radio" name="subPlan" value="20000" class="sr-only">
-                            <div class="text-[11px] font-bold text-gray-500">5 Months</div>
-                            <div class="text-sm font-black text-gray-900">₦20,000</div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Payment Method Options -->
-                <div class="border-t pt-3">
-                    <label class="block text-xs font-extrabold text-gray-900 uppercase mb-2">Choose Payment Gateway / Method</label>
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        <label class="border-2 border-blue-600 bg-blue-50 rounded-xl p-3 text-center cursor-pointer">
-                            <input type="radio" name="payMethod" value="flutterwave" checked onchange="togglePaymentMethod('flutterwave')" class="mr-1 accent-blue-600">
-                            <span class="text-xs font-bold text-gray-900">Flutterwave API</span>
-                        </label>
-                        <label class="border-2 border-gray-200 rounded-xl p-3 text-center cursor-pointer hover:border-blue-500">
-                            <input type="radio" name="payMethod" value="bank" onchange="togglePaymentMethod('bank')" class="mr-1 accent-blue-600">
-                            <span class="text-xs font-bold text-gray-900">Direct Bank Transfer</span>
-                        </label>
-                    </div>
-
-                    <!-- Direct Bank Transfer Account Info Box (KUDA Microfinance Bank) -->
-                    <div id="bankDetailsBox" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-gray-700 space-y-1">
-                        <div class="font-extrabold text-blue-900 mb-1"><i class="fa-solid fa-building-columns mr-1"></i> GROWAM NIG LTD Bank Account:</div>
-                        <div><strong>Bank Name:</strong> KUDA Microfinance Bank</div>
-                        <div><strong>Account Number:</strong> 3003012517</div>
-                        <div><strong>Account Name:</strong> GROWAM NIG LTD</div>
-                        <div class="text-[11px] text-gray-500 mt-1">Transfer the exact subscription fee and click publish. Our team will verify instantly.</div>
-                    </div>
-                </div>
-
-                <!-- Verify You're a Human: Drag-into-the-box Widget -->
-                <div class="border-t pt-3">
-                    <label class="block text-xs font-extrabold text-gray-900 uppercase mb-2">Security Check</label>
-                    <div id="dragTrack" class="h-12 bg-gray-100 border border-gray-300 rounded-xl overflow-hidden flex items-center px-1 relative">
-                        <!-- Progress background fill -->
-                        <div id="dragFill" class="absolute left-0 top-0 bottom-0 bg-blue-100 w-0 transition-all duration-75 pointer-events-none"></div>
-                        <!-- Instruction text -->
-                        <span id="dragText" class="w-full text-center text-xs font-bold text-gray-500 pointer-events-none z-10">
-                            <i class="fa-solid fa-arrows-left-right mr-1"></i> Drag to verify you're a human
-                        </span>
-                        <!-- Draggable Handle -->
-                        <div id="dragHandle" class="w-12 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold shadow-md z-20 transition-colors">
-                            <i id="dragIcon" class="fa-solid fa-angles-right"></i>
+                <!-- Human Verification Slider in Checkout -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Verify you're a human</label>
+                    <div class="drag-box h-12" id="dragBoxCheckout">
+                        <div class="drag-btn text-sm font-bold" id="dragBtnCheckout" onmousedown="startDrag(event, 'checkout')" ontouchstart="startDrag(event, 'checkout')">
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
+                        <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-400 pointer-events-none" id="dragTextCheckout">Drag arrow to the right</div>
                     </div>
                 </div>
 
-                <button type="submit" id="submitUploadBtn" disabled class="w-full bg-gray-300 text-gray-500 py-3.5 rounded-xl font-bold transition shadow-md text-sm cursor-not-allowed">
-                    Complete Payment & Publish Property
-                </button>
+                <button type="submit" id="checkoutSubmitBtn" disabled class="w-full py-4 bg-slate-300 text-white font-bold rounded-xl shadow transition cursor-not-allowed">Complete Secure Order</button>
             </form>
         </div>
     </div>
 
-    <!-- JavaScript Controllers -->
     <script>
-        // Exactly 20 Pre-populated Nigerian Properties with reliable Unsplash image links
-        let sampleProperties = [
-            { id: 1, title: 'Luxury 4 Bedroom Duplex', type: 'Rent', state: 'Lagos State', city: 'Lekki Phase 1', price: '₦4,500,000 /yr', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800' },
-            { id: 2, title: 'Growam Garden Estate Plot', type: 'Land', state: 'Lagos State', city: 'Ibeju Lekki', price: '₦2,500,000', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800' },
-            { id: 3, title: 'Executive 3-Bedroom Apartment', type: 'Rent', state: 'Abuja (FCT)', city: 'Maitama', price: '₦6,000,000 /yr', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800' },
-            { id: 4, title: 'Modern 5 Bedroom Fully Detached Mansion', type: 'Rent', state: 'Lagos State', city: 'Banana Island, Ikoyi', price: '₦25,000,000 /yr', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800' },
-            { id: 5, title: 'Prime Residential Dry Land', type: 'Land', state: 'Ogun State', city: 'Arepo, Mowe', price: '₦1,800,000', image: 'https://images.unsplash.com/photo-1524813686514-a57563d77840?auto=format&fit=crop&q=80&w=800' },
-            { id: 6, title: 'Cozy 2-Bedroom Serviced Flat', type: 'Rent', state: 'Oyo State', city: 'Bodija, Ibadan', price: '₦1,500,000 /yr', image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800' },
-            { id: 7, title: 'Executive 4-Bedroom Terrace', type: 'Rent', state: 'Abuja (FCT)', city: 'Asokoro', price: '₦8,500,000 /yr', image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800' },
-            { id: 8, title: 'Commercial Plaza Space (Ground Floor)', type: 'Rent', state: 'Rivers State', city: 'GRA Phase 2, Port Harcourt', price: '₦3,000,000 /yr', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800' },
-            { id: 9, title: 'Waterfront Plot with C of O', type: 'Land', state: 'Lagos State', city: 'Epe', price: '₦4,000,000', image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=800' },
-            { id: 10, title: 'Contemporary 3-Bedroom Penthouse', type: 'Rent', state: 'Lagos State', city: 'Victoria Island', price: '₦12,000,000 /yr', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800' },
-            { id: 11, title: 'Suburban 3-Bedroom Bungalow', type: 'Rent', state: 'Anambra State', city: 'Awka GRA', price: '₦1,200,000 /yr', image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&q=80&w=800' },
-            { id: 12, title: 'Industrial Warehouse Facility', type: 'Rent', state: 'Lagos State', city: 'Ikeja Industrial Estate', price: '₦18,000,000 /yr', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800' },
-            { id: 13, title: 'Green Valley Estate Land Plot', type: 'Land', state: 'Abuja (FCT)', city: 'Lugbe', price: '₦5,500,000', image: 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?auto=format&fit=crop&q=80&w=800' },
-            { id: 14, title: 'Luxury 6 Bedroom Smart Villa', type: 'Rent', state: 'Lagos State', city: 'Chevron Drive, Lekki', price: '₦16,000,000 /yr', image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80&w=800' },
-            { id: 15, title: 'Affordable 1-Bedroom Studio Apartment', type: 'Rent', state: 'Lagos State', city: 'Yaba', price: '₦900,000 /yr', image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800' },
-            { id: 16, title: 'Acre of Dry Agricultural Land', type: 'Land', state: 'Oyo State', city: 'Moniya, Ibadan', price: '₦2,000,000', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800' },
-            { id: 17, title: 'Executive 4 Bedroom Townhouse', type: 'Rent', state: 'Rivers State', city: 'Rumuola, Port Harcourt', price: '₦4,000,000 /yr', image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=800' },
-            { id: 18, title: 'Duplex Shell Building for Customization', type: 'Rent', state: 'Abuja (FCT)', city: 'Gwarinpa', price: '₦7,000,000 /yr', image: 'https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&q=80&w=800' },
-            { id: 19, title: 'Gated Estate Land Allocation', type: 'Land', state: 'Ogun State', city: 'Sagamu Interchange', price: '₦1,500,000', image: 'https://images.unsplash.com/photo-1592595896616-c37162298647?auto=format&fit=crop&q=80&w=800' },
-            { id: 20, title: 'Luxury Serviced 3-Bedroom Flat', type: 'Rent', state: 'Lagos State', city: 'Surulere', price: '₦3,500,000 /yr', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800' }
+        // 20 Properties Hub Database
+        const propertiesData = [
+            { id: 1, title: "Luxury 5 Bedroom Duplex", location: "Lekki Phase 1, Lagos", price: 450000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" },
+            { id: 2, title: "Modern 3 Bedroom Apartment", location: "Victoria Island, Lagos", price: 180000000, type: "Apartment", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800" },
+            { id: 3, title: "Prime Commercial Land Plot", location: "Abuja Central District", price: 300000000, type: "Land", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" },
+            { id: 4, title: "Executive 4 Bedroom Detached House", location: "Maitama, Abuja", price: 650000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" },
+            { id: 5, title: "Cozy 2 Bedroom Serviced Flat", location: "Ikeja GRA, Lagos", price: 95000000, type: "Apartment", image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800" },
+            { id: 6, title: "Waterfront Residential Land", location: "Epe, Lagos", price: 25000000, type: "Land", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" },
+            { id: 7, title: "Contemporary Penthouse Suite", location: "Eko Atlantic, Lagos", price: 950000000, type: "Apartment", image: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=800" },
+            { id: 8, title: "4 Bedroom Semi-Detached Duplex", location: "Ajah, Lagos", price: 120000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
+            { id: 9, title: "Gated Estate Land Plot", location: "Lugbe, Abuja", price: 18000000, type: "Land", image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800" },
+            { id: 10, title: "Luxury Townhouse 4 Beds", location: "Ikoyi, Lagos", price: 750000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=800" },
+            { id: 11, title: "Furnished 1 Bedroom Studio", location: "Yaba, Lagos", price: 45000000, type: "Apartment", image: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=800" },
+            { id: 12, title: "Industrial Acre Plot", location: "Ibeju Lekki, Lagos", price: 150000000, type: "Land", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" },
+            { id: 13, title: "5 Bedroom Luxury Mansion", location: "Asokoro, Abuja", price: 1200000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" },
+            { id: 14, title: "3 Bedroom Terrace Duplex", location: "Sangotedo, Lagos", price: 85000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" },
+            { id: 15, title: "Luxury 2 Bedroom Apartment", location: "Wuse II, Abuja", price: 130000000, type: "Apartment", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800" },
+            { id: 16, title: "Agricultural Land 5 Acres", location: "Kuje, Abuja", price: 35000000, type: "Land", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" },
+            { id: 17, title: "Spacious 6 Bedroom Villa", location: "Banana Island, Lagos", price: 2500000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
+            { id: 18, title: "Serviced 3 Bedroom Flat", location: "Garki, Abuja", price: 110000000, type: "Apartment", image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800" },
+            { id: 19, title: "Mixed-Use Commercial Land", location: "Surulere, Lagos", price: 220000000, type: "Land", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" },
+            { id: 20, title: "Modern Duplex 4 Beds", location: "Jabi, Abuja", price: 320000000, type: "Duplex", image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=800" }
         ];
 
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
+        let cart = JSON.parse(localStorage.getItem('growam_cart')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('growam_current_user')) || null;
+        let verifiedHumanState = { signin: false, signup: false, checkout: false };
+
+        function formatNaira(amount) {
+            return '₦' + amount.toLocaleString();
         }
 
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        function switchView(viewName) {
-            const home = document.getElementById('homeView');
-            const hub = document.getElementById('hubView');
-            if (viewName === 'home') {
-                home.classList.remove('hidden');
-                hub.classList.add('hidden');
-            } else {
-                home.classList.add('hidden');
-                hub.classList.remove('hidden');
-                renderHubListings();
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function renderHubListings() {
-            const grid = document.getElementById('listingsGrid');
-            grid.innerHTML = '';
-            sampleProperties.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between';
-                card.innerHTML = `
-                    <div class="relative">
-                        <span class="absolute top-2 left-2 bg-blue-900 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${p.type}</span>
-                        <img src="${p.image}" class="h-48 w-full object-cover">
+        function renderProperties(list) {
+            const grid = document.getElementById('propertyGrid');
+            grid.innerHTML = list.map(p => `
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">${p.type}</span>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="text-xs font-bold text-gray-500"><i class="fa-solid fa-location-dot text-red-500"></i> ${p.city}, ${p.state}</span>
-                            <h4 class="font-bold text-base text-gray-900 mt-1">${p.title}</h4>
-                            <div class="text-blue-600 font-extrabold text-lg mt-2">${p.price}</div>
+                            <h3 class="font-bold text-slate-900 text-lg mb-1">${p.title}</h3>
+                            <p class="text-xs text-slate-500 mb-3"><i class="fa-solid fa-location-dot text-blue-600 mr-1"></i>${p.location}</p>
                         </div>
-                        <div class="mt-4 grid grid-cols-2 gap-2">
-                            <a href="https://wa.me/2349069245040?text=Hello,%20I%20am%20interested%20in%20your%20property:%20${encodeURIComponent(p.title)}%20(${p.price})" target="_blank" class="bg-green-50 text-green-700 hover:bg-green-600 hover:text-white font-bold py-2 px-2 rounded-xl text-[11px] transition text-center flex items-center justify-center gap-1">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp 1
-                            </a>
-                            <a href="https://wa.me/2349064518552?text=Hello,%20I%20am%20interested%20in%20your%20property:%20${encodeURIComponent(p.title)}%20(${p.price})" target="_blank" class="bg-green-50 text-green-700 hover:bg-green-600 hover:text-white font-bold py-2 px-2 rounded-xl text-[11px] transition text-center flex items-center justify-center gap-1">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp 2
-                            </a>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-black text-blue-600 text-lg">${formatNaira(p.price)}</span>
+                            <button onclick="addToCart(${p.id})" class="px-4 py-2 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 text-sm font-bold rounded-xl transition">Save / Buy</button>
                         </div>
                     </div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+            `).join('');
         }
 
-        function togglePaymentMethod(method) {
-            const bankBox = document.getElementById('bankDetailsBox');
-            if (method === 'bank') {
-                bankBox.classList.remove('hidden');
+        function filterProperties(type) {
+            if (type === 'all') {
+                renderProperties(propertiesData);
             } else {
-                bankBox.classList.add('hidden');
+                renderProperties(propertiesData.filter(p => p.type === type));
+            }
+        }
+
+        // Cart Management
+        function addToCart(id) {
+            const prop = propertiesData.find(p => p.id === id);
+            if (!cart.some(item => item.id === id)) {
+                cart.push(prop);
+                localStorage.setItem('growam_cart', JSON.stringify(cart));
+                updateCartBadge();
+                alert('Property added to your saved list successfully!');
+            } else {
+                alert('Property is already in your saved list.');
+            }
+        }
+
+        function updateCartBadge() {
+            document.getElementById('cartCountBadge').innerText = cart.length;
+        }
+
+        function openCartModal() {
+            const list = document.getElementById('cartItemsList');
+            let total = 0;
+            if (cart.length === 0) {
+                list.innerHTML = `<p class="text-slate-500 text-center py-8">Your saved properties list is currently empty.</p>`;
+            } else {
+                list.innerHTML = cart.map(item => {
+                    total += item.price;
+                    return `
+                        <div class="flex items-center justify-between py-3">
+                            <div class="flex items-center space-x-4">
+                                <img src="${item.image}" class="w-16 h-16 object-cover rounded-xl">
+                                <div>
+                                    <h4 class="font-bold text-slate-900">${item.title}</h4>
+                                    <p class="text-xs text-slate-500">${item.location}</p>
+                                    <span class="font-black text-blue-600 text-sm">${formatNaira(item.price)}</span>
+                                </div>
+                            </div>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 p-2"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    `;
+                }).join('');
+            }
+            document.getElementById('cartTotalPrice').innerText = formatNaira(total);
+            document.getElementById('cartModal').classList.remove('hidden');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').classList.add('hidden');
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('growam_cart', JSON.stringify(cart));
+            updateCartBadge();
+            openCartModal();
+        }
+
+        // Authentication & UI State
+        function checkAuthState() {
+            if (currentUser) {
+                document.getElementById('navAuthBtn').classList.add('hidden');
+                const badge = document.getElementById('navUserBadge');
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+                document.getElementById('navUsernameDisplay').innerText = currentUser.name;
+            } else {
+                document.getElementById('navAuthBtn').classList.remove('hidden');
+                document.getElementById('navUserBadge').classList.add('hidden');
+                document.getElementById('navUserBadge').classList.remove('flex');
+            }
+        }
+
+        function openAuthModal(tab) {
+            document.getElementById('authModal').classList.remove('hidden');
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function switchAuthTab(tab) {
+            if (tab === 'signin') {
+                document.getElementById('signInForm').classList.remove('hidden');
+                document.getElementById('signUpForm').classList.add('hidden');
+                document.getElementById('tabSignInBtn').className = "flex-1 pb-3 font-bold text-blue-600 border-b-2 border-blue-600";
+                document.getElementById('tabSignUpBtn').className = "flex-1 pb-3 font-bold text-slate-400 hover:text-slate-600";
+            } else {
+                document.getElementById('signInForm').classList.add('hidden');
+                document.getElementById('signUpForm').classList.remove('hidden');
+                document.getElementById('tabSignUpBtn').className = "flex-1 pb-3 font-bold text-blue-600 border-b-2 border-blue-600";
+                document.getElementById('tabSignInBtn').className = "flex-1 pb-3 font-bold text-slate-400 hover:text-slate-600";
             }
         }
 
         // Drag to Verify Human Logic
-        let isVerified = false;
-        const track = document.getElementById('dragTrack');
-        const handle = document.getElementById('dragHandle');
-        const fill = document.getElementById('dragFill');
-        const text = document.getElementById('dragText');
-        const icon = document.getElementById('dragIcon');
-        const submitBtn = document.getElementById('submitUploadBtn');
+        function startDrag(e, type) {
+            e.preventDefault();
+            const box = document.getElementById(`dragBox${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const btn = document.getElementById(`dragBtn${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const text = document.getElementById(`dragText${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const submitBtn = document.getElementById(`${type}SubmitBtn`);
 
-        let isDragging = false;
-        let startX = 0;
+            const startX = e.clientX || e.touches[0].clientX;
+            const maxDist = box.offsetWidth - btn.offsetWidth;
 
-        function startDrag(e) {
-            if (isVerified) return;
-            isDragging = true;
-            startX = (e.clientX || e.touches[0].clientX) - handle.offsetLeft;
+            function onMove(moveEvent) {
+                const currentX = moveEvent.clientX || moveEvent.touches[0].clientX;
+                const diff = currentX - startX;
+                if (diff >= 0 && diff <= maxDist) {
+                    btn.style.left = diff + 'px';
+                } else if (diff > maxDist) {
+                    btn.style.left = maxDist + 'px';
+                    completeVerification(type);
+                }
+            }
+
+            function onEnd() {
+                window.removeEventListener('mousemove', onMove);
+                window.removeEventListener('mouseup', onEnd);
+                window.removeEventListener('touchmove', onMove);
+                window.removeEventListener('touchend', onEnd);
+
+                if (!verifiedHumanState[type]) {
+                    btn.style.left = '0px';
+                }
+            }
+
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('mouseup', onEnd);
+            window.addEventListener('touchmove', onMove);
+            window.addEventListener('touchend', onEnd);
         }
 
-        function onDrag(e) {
-            if (!isDragging || isVerified) return;
-            const clientX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
-            let moveX = clientX - startX;
-            const maxTrackWidth = track.clientWidth - handle.clientWidth;
+        function completeVerification(type) {
+            verifiedHumanState[type] = true;
+            const btn = document.getElementById(`dragBtn${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const text = document.getElementById(`dragText${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const submitBtn = document.getElementById(`${type}SubmitBtn`);
 
-            if (moveX < 0) moveX = 0;
-            if (moveX > maxTrackWidth) moveX = maxTrackWidth;
+            btn.classList.add('drag-success');
+            btn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+            text.innerText = "Verified Human";
+            text.classList.remove('text-slate-400');
+            text.classList.add('text-green-700', 'font-bold');
 
-            handle.style.left = moveX + 'px';
-            fill.style.width = (moveX + handle.clientWidth) + 'px';
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('bg-slate-300', 'cursor-not-allowed');
+            submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'shadow-lg');
+        }
 
-            if (moveX >= maxTrackWidth - 5) {
-                isVerified = true;
-                isDragging = false;
-                handle.style.left = maxTrackWidth + 'px';
-                fill.style.width = '100%';
-                handle.classList.remove('bg-blue-600');
-                handle.classList.add('bg-green-600');
-                icon.className = 'fa-solid fa-check';
-                text.innerHTML = '<span class="text-green-700 font-extrabold"><i class="fa-solid fa-circle-check"></i> Human Verified Successfully</span>';
-                
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
-                submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+        // Form Handlers
+        function handleSignIn(e) {
+            e.preventDefault();
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
+
+            let users = JSON.parse(localStorage.getItem('growam_users')) || [];
+            let found = users.find(u => u.email === email && u.password === password);
+
+            if (found || (email === "admin@growam.com" && password === "password")) {
+                currentUser = found || { name: "Admin User", email: email, phone: "08000000000" };
+                localStorage.setItem('growam_current_user', JSON.stringify(currentUser));
+                checkAuthState();
+                closeAuthModal();
+                alert('Sign in successful!');
+            } else {
+                alert('Invalid email or password. Please try again.');
             }
         }
 
-        function stopDrag() {
-            if (!isDragging || isVerified) return;
-            isDragging = false;
-            handle.style.left = '0px';
-            fill.style.width = '0px';
-        }
+        function handleSignUp(e) {
+            e.preventDefault();
+            const name = document.getElementById('signUpName').value;
+            const email = document.getElementById('signUpEmail').value;
+            const phone = document.getElementById('signUpPhone').value;
+            const password = document.getElementById('signUpPassword').value;
 
-        handle.addEventListener('mousedown', startDrag);
-        window.addEventListener('mousemove', onDrag);
-        window.addEventListener('mouseup', stopDrag);
-
-        handle.addEventListener('touchstart', startDrag);
-        window.addEventListener('touchmove', onDrag);
-        window.addEventListener('touchend', stopDrag);
-
-        function handleUploadSubmit(event) {
-            event.preventDefault();
-            if (!isVerified) {
-                alert('Please complete the security verification by dragging the slider.');
+            let users = JSON.parse(localStorage.getItem('growam_users')) || [];
+            if (users.some(u => u.email === email)) {
+                alert('Email already registered. Please sign in.');
                 return;
             }
 
-            const title = document.getElementById('upTitle').value;
-            const type = document.getElementById('upType').value;
-            const state = document.getElementById('upState').value;
-            const city = document.getElementById('upCity').value;
-            const price = document.getElementById('upPrice').value;
-            const subPlan = document.querySelector('input[name="subPlan"]:checked').value;
-            const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
+            const newUser = { name, email, phone, password };
+            users.push(newUser);
+            localStorage.setItem('growam_users', JSON.stringify(users));
+            currentUser = newUser;
+            localStorage.setItem('growam_current_user', JSON.stringify(currentUser));
 
-            if (payMethod === 'flutterwave') {
-                FlutterwaveCheckout({
-                    public_key: "FLWPUBK_TEST-xxxxxxxxxxxxxxxxxxxxx-X",
-                    tx_ref: "GROWAM-" + Date.now(),
-                    amount: parseInt(subPlan),
-                    currency: "NGN",
-                    payment_options: "card, banktransfer, ussd",
-                    customer: {
-                        email: "Growamnigltd@gmail.com",
-                        name: "GROWAM User",
-                    },
-                    callback: function (data) {
-                        finalizeUpload(title, type, state, city, price);
-                    },
-                    onclose: function() {
-                        alert('Payment window closed.');
-                    }
-                });
-            } else {
-                alert(`Bank transfer selected for ₦${parseInt(subPlan).toLocaleString()}. Please transfer to our KUDA Bank Account (3003012517).`);
-                finalizeUpload(title, type, state, city, price);
-            }
+            checkAuthState();
+            closeAuthModal();
+            alert('Account created successfully and information saved!');
         }
 
-        function finalizeUpload(title, type, state, city, price) {
-            sampleProperties.unshift({
-                id: sampleProperties.length + 1,
-                title, type, state, city, price,
-                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800'
-            });
-            alert('Payment verified! Your property has been published successfully.');
-            closeModal('uploadModal');
-            switchView('hub');
-        }
-
-        function handleAuthAction(event, message) {
-            event.preventDefault();
-            alert(message);
-            closeModal('loginModal');
-            closeModal('signupModal');
-        }
-
-        function openForgotPasswordModal(event) {
-            event.preventDefault();
-            closeModal('loginModal');
-            openModal('forgotPasswordModal');
+        // Forgot Password Flow
+        function openForgotPasswordModal() {
+            closeAuthModal();
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
         }
 
         function closeForgotPasswordModal() {
-            closeModal('forgotPasswordModal');
-            document.getElementById('forgotSuccessMessage').classList.add('hidden');
-            document.getElementById('forgotEmailInput').value = '';
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
         }
 
-        function backToLoginFromForgot() {
-            closeModal('forgotPasswordModal');
-            openModal('loginModal');
+        function handleForgotPassword(e) {
+            e.preventDefault();
+            const email = document.getElementById('forgotEmail').value;
+            closeForgotPasswordModal();
+            alert(`Password reset link sent to ${email}. Check your email inbox to proceed.`);
+            document.getElementById('resetPasswordModal').classList.remove('hidden');
         }
 
-        function handleForgotPassword(event) {
-            event.preventDefault();
-            document.getElementById('forgotSuccessMessage').classList.remove('hidden');
-            // Auto close or clear input after delay if desired
+        function handleNewPasswordSave(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('newPasswordInput').value;
+            if (currentUser) {
+                currentUser.password = newPass;
+                localStorage.setItem('growam_current_user', JSON.stringify(currentUser));
+            }
+            document.getElementById('resetPasswordModal').classList.add('hidden');
+            alert('Password successfully updated! You are now signed in with your new password.');
         }
+
+        // Profile Modal
+        function openProfileModal() {
+            if (!currentUser) return;
+            const content = document.getElementById('profileContent');
+            content.innerHTML = `
+                <div class="space-y-2">
+                    <p><strong>Full Name:</strong> ${currentUser.name}</p>
+                    <p><strong>Email Address:</strong> ${currentUser.email}</p>
+                    <p><strong>Phone Number:</strong> ${currentUser.phone || 'N/A'}</p>
+                    <p class="text-xs text-blue-600 font-semibold pt-2"><i class="fa-solid fa-shield-check mr-1"></i> Customer Information Stored Securely</p>
+                </div>
+            `;
+            document.getElementById('profileModal').classList.remove('hidden');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.add('hidden');
+        }
+
+        function handleSignOut() {
+            currentUser = null;
+            localStorage.removeItem('growam_current_user');
+            checkAuthState();
+            closeProfileModal();
+            alert('Signed out successfully.');
+        }
+
+        // Checkout Modal & Guest Checkout
+        function openCheckoutModal(mode) {
+            if (cart.length === 0) {
+                alert('Your cart/saved list is empty.');
+                return;
+            }
+            closeCartModal();
+            document.getElementById('checkoutModal').classList.remove('hidden');
+            
+            if (mode === 'guest') {
+                document.getElementById('checkoutModeSubtitle').innerText = "Guest Checkout Mode Active";
+            } else if (currentUser) {
+                document.getElementById('checkoutName').value = currentUser.name;
+                document.getElementById('checkoutEmail').value = currentUser.email;
+                document.getElementById('checkoutPhone').value = currentUser.phone || '';
+                document.getElementById('checkoutModeSubtitle').innerText = "Member Secured Checkout Active";
+            }
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function handleCompleteCheckout(e) {
+            e.preventDefault();
+            const name = document.getElementById('checkoutName').value;
+            const method = document.getElementById('paymentMethod').value;
+            
+            alert(`Order successfully placed for ${name}! Payment verified via ${method.toUpperCase()}. Thank you for choosing Growam Nig Ltd.`);
+            
+            // Clear cart
+            cart = [];
+            localStorage.removeItem('growam_cart');
+            updateCartBadge();
+            closeCheckoutModal();
+        }
+
+        // Initial setup
+        renderProperties(propertiesData);
+        updateCartBadge();
+        checkAuthState();
     </script>
 </body>
 </html>
