@@ -16,6 +16,21 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+        /* Custom styles for the drag-to-verify slider */
+        #dragTrack {
+            position: relative;
+            user-select: none;
+            touch-action: none;
+        }
+        #dragHandle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            cursor: pointer;
+            user-select: none;
+            touch-action: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -396,7 +411,24 @@
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-md text-sm">
+                <!-- Verify You're a Human: Drag-into-the-box Widget -->
+                <div class="border-t pt-3">
+                    <label class="block text-xs font-extrabold text-gray-900 uppercase mb-2">Security Check</label>
+                    <div id="dragTrack" class="h-12 bg-gray-100 border border-gray-300 rounded-xl overflow-hidden flex items-center px-1 relative">
+                        <!-- Progress background fill -->
+                        <div id="dragFill" class="absolute left-0 top-0 bottom-0 bg-blue-100 w-0 transition-all duration-75 pointer-events-none"></div>
+                        <!-- Instruction text -->
+                        <span id="dragText" class="w-full text-center text-xs font-bold text-gray-500 pointer-events-none z-10">
+                            <i class="fa-solid fa-arrows-left-right mr-1"></i> Drag to verify you're a human
+                        </span>
+                        <!-- Draggable Handle -->
+                        <div id="dragHandle" class="w-12 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold shadow-md z-20 transition-colors">
+                            <i id="dragIcon" class="fa-solid fa-angles-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitUploadBtn" disabled class="w-full bg-gray-300 text-gray-500 py-3.5 rounded-xl font-bold transition shadow-md text-sm cursor-not-allowed">
                     Complete Payment & Publish Property
                 </button>
             </form>
@@ -495,8 +527,77 @@
             }
         }
 
+        // Drag to Verify Human Logic
+        let isVerified = false;
+        const track = document.getElementById('dragTrack');
+        const handle = document.getElementById('dragHandle');
+        const fill = document.getElementById('dragFill');
+        const text = document.getElementById('dragText');
+        const icon = document.getElementById('dragIcon');
+        const submitBtn = document.getElementById('submitUploadBtn');
+
+        let isDragging = false;
+        let startX = 0;
+
+        function startDrag(e) {
+            if (isVerified) return;
+            isDragging = true;
+            startX = (e.clientX || e.touches[0].clientX) - handle.offsetLeft;
+        }
+
+        function onDrag(e) {
+            if (!isDragging || isVerified) return;
+            const clientX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            let moveX = clientX - startX;
+            const maxTrackWidth = track.clientWidth - handle.clientWidth;
+
+            if (moveX < 0) moveX = 0;
+            if (moveX > maxTrackWidth) moveX = maxTrackWidth;
+
+            handle.style.left = moveX + 'px';
+            fill.style.width = (moveX + handle.clientWidth) + 'px';
+
+            // Complete condition when dragged near the end
+            if (moveX >= maxTrackWidth - 5) {
+                isVerified = true;
+                isDragging = false;
+                handle.style.left = maxTrackWidth + 'px';
+                fill.style.width = '100%';
+                handle.classList.remove('bg-blue-600');
+                handle.classList.add('bg-green-600');
+                icon.className = 'fa-solid fa-check';
+                text.innerHTML = '<span class="text-green-700 font-extrabold"><i class="fa-solid fa-circle-check"></i> Human Verified Successfully</span>';
+                
+                // Enable submit button
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+            }
+        }
+
+        function stopDrag() {
+            if (!isDragging || isVerified) return;
+            isDragging = false;
+            // Snap back if not completed
+            handle.style.left = '0px';
+            fill.style.width = '0px';
+        }
+
+        handle.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', onDrag);
+        window.addEventListener('mouseup', stopDrag);
+
+        handle.addEventListener('touchstart', startDrag);
+        window.addEventListener('touchmove', onDrag);
+        window.addEventListener('touchend', stopDrag);
+
         function handleUploadSubmit(event) {
             event.preventDefault();
+            if (!isVerified) {
+                alert('Please complete the security verification by dragging the slider.');
+                return;
+            }
+
             const title = document.getElementById('upTitle').value;
             const type = document.getElementById('upType').value;
             const state = document.getElementById('upState').value;
