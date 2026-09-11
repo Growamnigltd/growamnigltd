@@ -290,7 +290,7 @@
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
             <button onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl">&times;</button>
             <h3 class="text-2xl font-bold text-gray-900 mb-1">Reset Password</h3>
-            <p class="text-sm text-gray-500 mb-6">Enter your registered email address and we'll send you instructions to reset your password.</p>
+            <p class="text-sm text-gray-500 mb-6">Enter your registered email address and we'll send you a secure link to reset your password.</p>
             
             <form onsubmit="handleForgotPassword(event)" class="space-y-4">
                 <div>
@@ -301,7 +301,11 @@
             </form>
             
             <div id="forgotSuccessMessage" class="hidden mt-4 p-3 bg-green-100 text-green-700 text-sm rounded-xl text-center font-medium">
-                Password reset instructions have been sent to your email!
+                <i class="fa-solid fa-circle-check mr-1"></i> If an account exists with this email, instructions have been sent!
+            </div>
+            
+            <div class="mt-4 text-center">
+                <button onclick="backToLoginFromForgot()" class="text-xs font-bold text-blue-600 hover:underline">← Back to Login</button>
             </div>
         </div>
     </div>
@@ -557,7 +561,6 @@
             handle.style.left = moveX + 'px';
             fill.style.width = (moveX + handle.clientWidth) + 'px';
 
-            // Complete condition when dragged near the end
             if (moveX >= maxTrackWidth - 5) {
                 isVerified = true;
                 isDragging = false;
@@ -568,7 +571,6 @@
                 icon.className = 'fa-solid fa-check';
                 text.innerHTML = '<span class="text-green-700 font-extrabold"><i class="fa-solid fa-circle-check"></i> Human Verified Successfully</span>';
                 
-                // Enable submit button
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
                 submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
@@ -578,7 +580,6 @@
         function stopDrag() {
             if (!isDragging || isVerified) return;
             isDragging = false;
-            // Snap back if not completed
             handle.style.left = '0px';
             fill.style.width = '0px';
         }
@@ -607,9 +608,8 @@
             const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
 
             if (payMethod === 'flutterwave') {
-                // Flutterwave Checkout Integration sample
                 FlutterwaveCheckout({
-                    public_key: "FLWPUBK_TEST-xxxxxxxxxxxxxxxxxxxxx-X", // Replace with your Flutterwave Public Key later
+                    public_key: "FLWPUBK_TEST-xxxxxxxxxxxxxxxxxxxxx-X",
                     tx_ref: "GROWAM-" + Date.now(),
                     amount: parseInt(subPlan),
                     currency: "NGN",
@@ -652,21 +652,24 @@
         function openForgotPasswordModal(event) {
             event.preventDefault();
             closeModal('loginModal');
-            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            openModal('forgotPasswordModal');
         }
 
         function closeForgotPasswordModal() {
-            document.getElementById('forgotPasswordModal').classList.add('hidden');
+            closeModal('forgotPasswordModal');
             document.getElementById('forgotSuccessMessage').classList.add('hidden');
             document.getElementById('forgotEmailInput').value = '';
+        }
+
+        function backToLoginFromForgot() {
+            closeModal('forgotPasswordModal');
+            openModal('loginModal');
         }
 
         function handleForgotPassword(event) {
             event.preventDefault();
             document.getElementById('forgotSuccessMessage').classList.remove('hidden');
-            setTimeout(() => {
-                closeForgotPasswordModal();
-            }, 3000);
+            // Auto close or clear input after delay if desired
         }
     </script>
 </body>
